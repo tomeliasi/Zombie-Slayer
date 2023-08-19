@@ -57,7 +57,7 @@ namespace Zombie_Slayer
             {
                 gameOver = true;
                 player.Image = Properties.Resources.skull;
-                player.Size = new Size(100, 100);
+                player.Size = new Size(99, 100);
                 GameTimer.Stop();
 
                 PictureBox Gameover = new PictureBox();
