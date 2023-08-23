@@ -9,6 +9,7 @@ namespace Zombie_Slayer
         int playerHealth = 100;
         int speed = 20;
         bool isAmmoVisable = false;
+        bool isHealthkitVisable = false;
         int ammo = 10;
         int zombieSpeed = 3;
         Random randNum = new Random();
@@ -22,30 +23,6 @@ namespace Zombie_Slayer
             RestartGame();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void progressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void mainTimerEvent(object sender, EventArgs e)
         {
@@ -56,17 +33,7 @@ namespace Zombie_Slayer
             else
             {
                 gameOver = true;
-                player.Image = Properties.Resources.skull;
-                player.Size = new Size(99, 100);
-                GameTimer.Stop();
-
-                PictureBox Gameover = new PictureBox();
-                Gameover.Image = Properties.Resources.game_over;
-                Gameover.SizeMode = PictureBoxSizeMode.StretchImage;
-                Gameover.Size = new Size(300, 300);
-                Gameover.Location = new Point((this.Width - Gameover.Width) / 2, (this.Height - Gameover.Height) / 2);
-                this.Controls.Add(Gameover);
-                Gameover.BringToFront();
+                handleGameOver();
             }
 
 
@@ -95,6 +62,16 @@ namespace Zombie_Slayer
                         entity.Dispose();
                         ammo += 10;
                         isAmmoVisable = false;
+                    }
+                }
+                if (entity is PictureBox && (string)entity.Tag == "healthkit")
+                {
+                    if (player.Bounds.IntersectsWith(entity.Bounds))
+                    {
+                        this.Controls.Remove(entity);
+                        entity.Dispose();
+                        playerHealth+=30;
+                        isHealthkitVisable = false;
                     }
                 }
                 if (entity is PictureBox && (string)entity.Tag == "zombie")
@@ -201,6 +178,10 @@ namespace Zombie_Slayer
             {
                 MakeAmmo();
             }
+            if (playerHealth < 30 && !isHealthkitVisable )
+            {
+                MakeHealthKit();
+            }
         }
 
         private void ShootBullet(string direction)
@@ -243,10 +224,25 @@ namespace Zombie_Slayer
             player.BringToFront();
             isAmmoVisable = true;
         }
-
+        private void MakeHealthKit()
+        {
+            PictureBox Healthkit = new PictureBox();
+            Healthkit.Tag = "healthkit";
+            Healthkit.Image = Properties.Resources.first_aid_kit;
+            Healthkit.Left = randNum.Next(0, this.ClientSize.Width - Healthkit.Width);
+            Healthkit.Top = randNum.Next(0, this.ClientSize.Height - Healthkit.Height);
+            Healthkit.Size = new Size(70, 60);
+            Healthkit.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.Controls.Add(Healthkit);
+            Healthkit.BringToFront();
+            player.BringToFront();
+            isHealthkitVisable = true;
+        }
 
         private void RestartGame()
         {
+            gameOver = false;
+            
             player.Image = Properties.Resources.hero_up;
 
             foreach (PictureBox zombie in zombiesList)
@@ -268,9 +264,40 @@ namespace Zombie_Slayer
 
         }
 
-        private void ammo_Click(object sender, EventArgs e)
+        private void handleGameOver()
+        {
+            player.Image = Properties.Resources.skull;
+            player.Size = new Size(99, 100);
+            GameTimer.Stop();
+
+            renderGameoverSection();
+        }
+
+        private void renderGameoverSection()
         {
 
+            /////////////////game over image button/////////////////
+
+            PictureBox Gameover = new PictureBox();
+            Gameover.Image = Properties.Resources.game_over;
+            Gameover.SizeMode = PictureBoxSizeMode.StretchImage;
+            Gameover.Size = new Size(300, 300);
+            Gameover.Location = new Point((this.Width - Gameover.Width) / 2, (this.Height - Gameover.Height) / 2);
+            this.Controls.Add(Gameover);
+            Gameover.BringToFront();
+
+
+            /////////////////reset button/////////////////
+
+            PictureBox Reset = new PictureBox();
+            Reset.Image = Properties.Resources.reset;
+            Reset.SizeMode = PictureBoxSizeMode.StretchImage;
+            Reset.Size = new Size(100, 100);
+            Reset.Location = new Point((this.Width - Gameover.Width) / 2 + 100, (this.Height - Gameover.Height) / 2 + 300);
+            this.Controls.Add(Reset);
+            Reset.BringToFront();
         }
+
+        
     }
 }

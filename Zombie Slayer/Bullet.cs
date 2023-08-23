@@ -14,7 +14,6 @@ namespace Zombie_Slayer
         public string direction;
         public int bulletLeft;
         public int bulletTop;
-
         private int speed = 20;
         private PictureBox bullet = new PictureBox(); 
         private System.Windows.Forms.Timer bulletTimer = new System.Windows.Forms.Timer();

@@ -50,7 +50,6 @@
             ammoCount.TabIndex = 0;
             ammoCount.Text = "Ammo: 0";
             ammoCount.TextAlign = ContentAlignment.TopRight;
-            ammoCount.Click += ammo_Click;
             // 
             // kills
             // 
@@ -64,7 +63,6 @@
             kills.TabIndex = 1;
             kills.Text = "Kiils: 0";
             kills.TextAlign = ContentAlignment.TopRight;
-            kills.Click += label1_Click_1;
             // 
             // health
             // 
@@ -81,13 +79,12 @@
             // 
             // healthBar
             // 
-            healthBar.Location = new Point(687, 24);
+            healthBar.Location = new Point(688, 22);
             healthBar.Margin = new Padding(3, 4, 3, 4);
             healthBar.Name = "healthBar";
             healthBar.Size = new Size(222, 31);
             healthBar.TabIndex = 3;
             healthBar.Value = 100;
-            healthBar.Click += progressBar1_Click;
             // 
             // player
             // 
@@ -101,7 +98,6 @@
             player.SizeMode = PictureBoxSizeMode.StretchImage;
             player.TabIndex = 4;
             player.TabStop = false;
-            player.Click += pictureBox1_Click;
             // 
             // GameTimer
             // 
@@ -123,7 +119,6 @@
             Controls.Add(ammoCount);
             Name = "Form1";
             Text = "Zombie Slayer";
-            Load += Form1_Load;
             KeyDown += keyIsDown;
             KeyUp += keyIsUp;
             ((System.ComponentModel.ISupportInitialize)player).EndInit();

@@ -123,6 +123,16 @@ namespace Zombie_Slayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap first_aid_kit {
+            get {
+                object obj = ResourceManager.GetObject("first-aid-kit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap game_over {
             get {
                 object obj = ResourceManager.GetObject("game-over", resourceCulture);
@@ -166,6 +176,16 @@ namespace Zombie_Slayer.Properties {
         internal static System.Drawing.Bitmap hero_up {
             get {
                 object obj = ResourceManager.GetObject("hero_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reset {
+            get {
+                object obj = ResourceManager.GetObject("reset", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
