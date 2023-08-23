@@ -1,34 +1,29 @@
-using System.Security.Cryptography.X509Certificates;
-
 namespace Zombie_Slayer
 {
     public partial class Form1 : Form
     {
-        bool up, down, right, left, gameOver;
-        string facing = "up";
-        int playerHealth = 100;
-        int speed = 20;
-        bool isAmmoVisable = false;
-        bool isHealthkitVisable = false;
-        int ammo = 10;
-        int zombieSpeed = 3;
+        private Player player = new Player();
+        private Ammo ammo;
+        private HealthKit healthKit;
+        private List<Zombie> zombiesList = new List<Zombie>();
+        
+        bool  gameOver;
         Random randNum = new Random();
-        int score = 0;
-
-        List<PictureBox> zombiesList = new List<PictureBox>();
 
         public Form1()
         {
             InitializeComponent();
-            RestartGame();
-        }
+            restartGame();
 
+            ammo = new Ammo(player, this);
+            healthKit = new HealthKit(player, this);
+        }
 
         private void mainTimerEvent(object sender, EventArgs e)
         {
-            if (playerHealth > 1)
+            if (player.getHealth() > 1)
             {
-                healthBar.Value = playerHealth;
+                healthBar.Value = player.getHealth();
             }
             else
             {
@@ -36,214 +31,104 @@ namespace Zombie_Slayer
                 handleGameOver();
             }
 
+            ammoCount.Text = "Ammo: " + player.getAmmo();
+            kills.Text = "kills: " + player.getScore();
 
-            ammoCount.Text = "Ammo: " + ammo;
-            kills.Text = "kills: " + score;
 
-            if (left && player.Left > 4)
-                player.Left -= speed;
+            player.move(ClientSize);
 
-            if (right && player.Left + player.Width < this.ClientSize.Width)
-                player.Left += speed;
+            collisions();
+        }
 
-            if (up && player.Top > 65)
-                player.Top -= speed;
-
-            if (down && player.Top + player.Height < this.ClientSize.Height)
-                player.Top += speed;
+        private void collisions()
+        {
 
             foreach (Control entity in this.Controls)
             {
-                if (entity is PictureBox && (string)entity.Tag == "ammo")
+                if (entity is Ammo)
                 {
-                    if (player.Bounds.IntersectsWith(entity.Bounds))
+                    Ammo ammoEntity = (Ammo)entity;
+
+                    if (player.Bounds.IntersectsWith(ammoEntity.Bounds))
                     {
-                        this.Controls.Remove(entity);
-                        entity.Dispose();
-                        ammo += 10;
-                        isAmmoVisable = false;
+                        this.Controls.Remove(ammoEntity);
+                        ammoEntity.Dispose();
+                        player.setAmmo(10);
+                        player.setIsAmmoVisible(false);
                     }
                 }
-                if (entity is PictureBox && (string)entity.Tag == "healthkit")
+                if (entity is HealthKit)
                 {
-                    if (player.Bounds.IntersectsWith(entity.Bounds))
+                    HealthKit halthKitEntity = (HealthKit)entity;
+                    if (player.Bounds.IntersectsWith(halthKitEntity.Bounds))
                     {
-                        this.Controls.Remove(entity);
-                        entity.Dispose();
-                        playerHealth+=30;
-                        isHealthkitVisable = false;
+                        this.Controls.Remove(halthKitEntity);
+                        halthKitEntity.Dispose();
+                        player.setHeath(30);
+                        player.setIsHealthkitVisable(false);
                     }
                 }
-                if (entity is PictureBox && (string)entity.Tag == "zombie")
+                if (entity is Zombie)
                 {
+                    Zombie zombieEntity = (Zombie)entity; 
+                    zombieEntity.move(ClientSize);
+
                     if (player.Bounds.IntersectsWith(entity.Bounds))
-                        playerHealth -= 2;
+                        player.setHeath(-2);
 
-                    if (entity.Left > player.Left)
-                    {
-                        entity.Left -= zombieSpeed;
-                        ((PictureBox)entity).Image = Properties.Resources.zombieGLeft;
-                    }
-
-                    if (entity.Left < player.Left)
-                    {
-                        entity.Left += zombieSpeed;
-                        ((PictureBox)entity).Image = Properties.Resources.zombieGRight;
-                    }
-                    if (entity.Top > player.Top)
-                    {
-                        entity.Top -= zombieSpeed;
-                        ((PictureBox)entity).Image = Properties.Resources.zombieGUp;
-                    }
-                    if (entity.Top < player.Top)
-                    {
-                        entity.Top += zombieSpeed;
-                        ((PictureBox)entity).Image = Properties.Resources.zombieGDown;
-                    }
                 }
                 foreach (Control entity2 in this.Controls)
                 {
-                    if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is PictureBox && (string)entity.Tag == "zombie")
+                    if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is Zombie)
                     {
-                        if (entity.Bounds.IntersectsWith(entity2.Bounds))
+                        Zombie zombieEntity = (Zombie)entity;
+
+                        if (zombieEntity.Bounds.IntersectsWith(entity2.Bounds))
                         {
-                            score++;
+                            player.setScore(1);
                             this.Controls.Remove(entity2);
                             ((PictureBox)entity2).Dispose();
-                            this.Controls.Remove(entity);
-                            ((PictureBox)entity).Dispose();
-                            zombiesList.Remove((PictureBox)entity);
-                            MakeZombies();
+                            this.Controls.Remove(zombieEntity);
+                            zombieEntity.Dispose();
+                            zombiesList.Remove(zombieEntity);
+                            makeZombie();
                         }
                     }
                 }
-            }
 
+            }
         }
+         
 
         private void keyIsDown(object sender, KeyEventArgs e)
         {
-            if (gameOver == false)
-            {
-                if (e.KeyCode == Keys.Left)
-                {
-                    left = true;
-                    facing = "left";
-                    player.Image = Properties.Resources.hero_left;
-                }
-
-                if (e.KeyCode == Keys.Right)
-                {
-                    right = true;
-                    facing = "right";
-                    player.Image = Properties.Resources.hero_right;
-                }
-
-                if (e.KeyCode == Keys.Up)
-                {
-                    up = true;
-                    facing = "up";
-                    player.Image = Properties.Resources.hero_up;
-                }
-
-                if (e.KeyCode == Keys.Down)
-                {
-                    down = true;
-                    facing = "down";
-                    player.Image = Properties.Resources.hero__down;
-                }
-            }
+            Console.WriteLine(sender);
+            player.playerKeyIsDown(e, gameOver);
         }
 
         private void keyIsUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
-                left = false;
-
-            if (e.KeyCode == Keys.Right)
-                right = false;
-
-            if (e.KeyCode == Keys.Up)
-                up = false;
-
-            if (e.KeyCode == Keys.Down)
-                down = false;
-
-            if (e.KeyCode == Keys.Space && ammo > 0)
-            {
-                ammo--;
-                ShootBullet(facing);
-            }
-            if (ammo < 1 && !isAmmoVisable)
-            {
-                MakeAmmo();
-            }
-            if (playerHealth < 30 && !isHealthkitVisable )
-            {
-                MakeHealthKit();
-            }
+            player.playerKeyIsUp(e, ammo, healthKit);
         }
 
-        private void ShootBullet(string direction)
+        private void makeZombie()
         {
-            if (gameOver == false)
-            {
-                Bullet ShootBullet = new Bullet();
-                ShootBullet.direction = direction;
-                ShootBullet.bulletLeft = player.Left + (player.Width / 2) - 12;
-                ShootBullet.bulletTop = player.Top + (player.Height / 2) - 10;
-                ShootBullet.makeBullet(this);
-            }
-        }
-
-        private void MakeZombies()
-        {
-            PictureBox zombie = new PictureBox();
-            zombie.Tag = "zombie";
-            zombie.Image = Properties.Resources.zombieGDown;
-            zombie.Left = randNum.Next(0, this.ClientSize.Width - zombie.Width);
-            zombie.Top = randNum.Next(0, this.ClientSize.Height - zombie.Height);
-            zombie.Size = new Size(100, 100);
-            zombie.SizeMode = PictureBoxSizeMode.StretchImage;
+            Zombie zombie = new Zombie(player, this.ClientSize);
             zombiesList.Add(zombie);
             this.Controls.Add(zombie);
-            player.BringToFront();
         }
 
-        private void MakeAmmo()
+        private void restartGame()
         {
-            PictureBox ammo = new PictureBox();
-            ammo.Tag = "ammo";
-            ammo.Image = Properties.Resources.ammunition;
-            ammo.Left = randNum.Next(0, this.ClientSize.Width - ammo.Width);
-            ammo.Top = randNum.Next(0, this.ClientSize.Height - ammo.Height);
-            ammo.Size = new Size(70, 60);
-            ammo.SizeMode = PictureBoxSizeMode.StretchImage;
-            this.Controls.Add(ammo);
-            ammo.BringToFront();
-            player.BringToFront();
-            isAmmoVisable = true;
-        }
-        private void MakeHealthKit()
-        {
-            PictureBox Healthkit = new PictureBox();
-            Healthkit.Tag = "healthkit";
-            Healthkit.Image = Properties.Resources.first_aid_kit;
-            Healthkit.Left = randNum.Next(0, this.ClientSize.Width - Healthkit.Width);
-            Healthkit.Top = randNum.Next(0, this.ClientSize.Height - Healthkit.Height);
-            Healthkit.Size = new Size(70, 60);
-            Healthkit.SizeMode = PictureBoxSizeMode.StretchImage;
-            this.Controls.Add(Healthkit);
-            Healthkit.BringToFront();
-            player.BringToFront();
-            isHealthkitVisable = true;
-        }
-
-        private void RestartGame()
-        {
+            this.Controls.Add(player);
             gameOver = false;
-            
+
+            GameTimer.Start();
+
             player.Image = Properties.Resources.hero_up;
+
+            removeObjectByTag("gameOver");
+            removeObjectByTag("reset");
 
             foreach (PictureBox zombie in zombiesList)
             {
@@ -252,15 +137,8 @@ namespace Zombie_Slayer
             zombiesList.Clear();
 
             for (int i = 0; i < 3; i++)
-                MakeZombies();
-            up = false;
-            down = false;
-            left = false;
-            right = false;
-            playerHealth = 100;
-            score = 0;
-            ammo = 10;
-            GameTimer.Start();
+                makeZombie();
+            player.initPlayer();
 
         }
 
@@ -278,26 +156,46 @@ namespace Zombie_Slayer
 
             /////////////////game over image button/////////////////
 
-            PictureBox Gameover = new PictureBox();
-            Gameover.Image = Properties.Resources.game_over;
-            Gameover.SizeMode = PictureBoxSizeMode.StretchImage;
-            Gameover.Size = new Size(300, 300);
-            Gameover.Location = new Point((this.Width - Gameover.Width) / 2, (this.Height - Gameover.Height) / 2);
-            this.Controls.Add(Gameover);
-            Gameover.BringToFront();
+            PictureBox gameOver = new PictureBox();
+            gameOver.Tag = "gameOver";
+            gameOver.Image = Properties.Resources.game_over;
+            gameOver.SizeMode = PictureBoxSizeMode.StretchImage;
+            gameOver.Size = new Size(300, 300);
+            gameOver.Location = new Point((this.Width - gameOver.Width) / 2, (this.Height - gameOver.Height) / 2 - 50);
+            this.Controls.Add(gameOver);
+            gameOver.BringToFront();
 
 
             /////////////////reset button/////////////////
 
-            PictureBox Reset = new PictureBox();
-            Reset.Image = Properties.Resources.reset;
-            Reset.SizeMode = PictureBoxSizeMode.StretchImage;
-            Reset.Size = new Size(100, 100);
-            Reset.Location = new Point((this.Width - Gameover.Width) / 2 + 100, (this.Height - Gameover.Height) / 2 + 300);
-            this.Controls.Add(Reset);
-            Reset.BringToFront();
+            PictureBox reset = new PictureBox();
+            reset.Tag = "reset";
+            reset.Image = Properties.Resources.reset;
+            reset.SizeMode = PictureBoxSizeMode.StretchImage;
+            reset.Size = new Size(100, 100);
+            reset.Location = new Point((this.Width - gameOver.Width) / 2 + 100, (this.Height - gameOver.Height) / 2 + 250);
+            this.Controls.Add(reset);
+            reset.BringToFront();
+
+            reset.Click += handleClickOnReset;
         }
 
-        
+        private void handleClickOnReset(object? sender, EventArgs e)
+        {
+            restartGame();
+        }
+
+
+        private void removeObjectByTag(string tag)
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is PictureBox && ((string)control.Tag == tag))
+                {
+                    this.Controls.Remove(control);
+                    control.Dispose();
+                }
+            }
+        }
     }
 }

@@ -5,5 +5,5 @@
     protected int speed;
     protected int health;
 
-    public abstract void Move();
+    public abstract void move(Size clientSize);
 }

@@ -33,9 +33,7 @@
             kills = new Label();
             health = new Label();
             healthBar = new ProgressBar();
-            player = new PictureBox();
             GameTimer = new System.Windows.Forms.Timer(components);
-            ((System.ComponentModel.ISupportInitialize)player).BeginInit();
             SuspendLayout();
             // 
             // ammoCount
@@ -86,19 +84,6 @@
             healthBar.TabIndex = 3;
             healthBar.Value = 100;
             // 
-            // player
-            // 
-            player.BackColor = Color.Transparent;
-            player.Image = Properties.Resources.hero_up;
-            player.ImageLocation = "";
-            player.Location = new Point(399, 157);
-            player.Margin = new Padding(3, 4, 3, 4);
-            player.Name = "player";
-            player.Size = new Size(120, 120);
-            player.SizeMode = PictureBoxSizeMode.StretchImage;
-            player.TabIndex = 4;
-            player.TabStop = false;
-            // 
             // GameTimer
             // 
             GameTimer.Enabled = true;
@@ -112,7 +97,6 @@
             BackColor = Color.Gray;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(922, 653);
-            Controls.Add(player);
             Controls.Add(healthBar);
             Controls.Add(health);
             Controls.Add(kills);
@@ -121,7 +105,6 @@
             Text = "Zombie Slayer";
             KeyDown += keyIsDown;
             KeyUp += keyIsUp;
-            ((System.ComponentModel.ISupportInitialize)player).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -132,7 +115,6 @@
         private Label kills;
         private Label health;
         private ProgressBar healthBar;
-        private PictureBox player;
         private System.Windows.Forms.Timer GameTimer;
     }
 }
