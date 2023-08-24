@@ -14,6 +14,8 @@
         public int getHealth() { return health; }
         public int getSpeed() { return speed; }
         public void setHeath(int health) { this.health += health; }
+
+        public void setMaxHealth() { this.health = 100; }
         public void setScore(int score) { this.score += score; }
         public void setAmmo(int ammo) { this.ammo += ammo; }
         public void setIsAmmoVisible(bool value) { isAmmoVisible = value; }

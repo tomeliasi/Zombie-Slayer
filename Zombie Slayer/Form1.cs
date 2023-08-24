@@ -64,7 +64,10 @@ namespace Zombie_Slayer
                     {
                         this.Controls.Remove(halthKitEntity);
                         halthKitEntity.Dispose();
-                        player.setHeath(30);
+                        if (player.getHealth() <= 70)
+                            player.setHeath(30);
+                        else
+                            player.setMaxHealth();
                         player.setIsHealthkitVisable(false);
                     }
                 }
