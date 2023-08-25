@@ -15,8 +15,8 @@ C:\Users\Dor\Desktop\Zombie-Slayer\Zombie Slayer (2019)\bin\Debug\Zombie Slayer 
 C:\Users\Dor\Desktop\Zombie-Slayer\Zombie Slayer (2019)\obj\Debug\Zombie Slayer (2019).csproj.AssemblyReference.cache
 C:\Users\Dor\Desktop\Zombie-Slayer\Zombie Slayer (2019)\obj\Debug\Zombie Slayer (2019).csproj.SuggestedBindingRedirects.cache
 C:\Users\Dor\Desktop\Zombie-Slayer\Zombie Slayer (2019)\obj\Debug\Zombie_Slayer.Form1.resources
-C:\Users\Dor\Desktop\Zombie-Slayer\Zombie Slayer (2019)\obj\Debug\Zombie_Slayer__2019_.Properties.Resources.resources
 C:\Users\Dor\Desktop\Zombie-Slayer\Zombie Slayer (2019)\obj\Debug\Zombie Slayer (2019).csproj.GenerateResource.cache
 C:\Users\Dor\Desktop\Zombie-Slayer\Zombie Slayer (2019)\obj\Debug\Zombie Slayer (2019).csproj.CoreCompileInputs.cache
 C:\Users\Dor\Desktop\Zombie-Slayer\Zombie Slayer (2019)\obj\Debug\Zombie Slayer (2019).exe
 C:\Users\Dor\Desktop\Zombie-Slayer\Zombie Slayer (2019)\obj\Debug\Zombie Slayer (2019).pdb
+C:\Users\Dor\Desktop\Zombie-Slayer\Zombie Slayer (2019)\obj\Debug\Zombie_Slayer.Properties.Resources.resources

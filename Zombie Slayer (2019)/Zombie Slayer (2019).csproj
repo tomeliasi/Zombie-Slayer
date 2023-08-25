@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DB24E3E4-D0D2-421A-958C-AEB80B844A5A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Zombie_Slayer__2019_</RootNamespace>
+    <RootNamespace>Zombie_Slayer</RootNamespace>
     <AssemblyName>Zombie Slayer %282019%29</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
