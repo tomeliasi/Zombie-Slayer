@@ -100,7 +100,7 @@ namespace Zombie_Slayer
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1300, 1000);
+            ClientSize = new Size(1000, 1000);
             Controls.Add(healthBar);
             Controls.Add(health);
             Controls.Add(kills);
