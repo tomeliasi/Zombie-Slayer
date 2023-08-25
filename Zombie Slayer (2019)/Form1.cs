@@ -142,6 +142,9 @@ namespace Zombie_Slayer
 
             removeObjectByTag("gameOver");
             removeObjectByTag("reset");
+            removeObjectByTag("healthkit");
+            removeObjectByTag("ammo");
+
 
             foreach (PictureBox zombie in zombiesList)
             {
@@ -209,6 +212,11 @@ namespace Zombie_Slayer
                     control.Dispose();
                 }
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
