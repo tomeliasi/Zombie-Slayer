@@ -72,7 +72,7 @@ namespace NewZombieS
             this.Kills.BackColor = System.Drawing.Color.Transparent;
             this.Kills.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.Kills.ForeColor = System.Drawing.Color.White;
-            this.Kills.Location = new System.Drawing.Point(247, 15);
+            this.Kills.Location = new System.Drawing.Point(255, 15);
             this.Kills.Name = "Kills";
             this.Kills.Size = new System.Drawing.Size(110, 41);
             this.Kills.TabIndex = 1;
