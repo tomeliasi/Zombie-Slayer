@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using Zombie_Slayer;
 
-namespace NewZombieS
+namespace Zombie_Slayer
 {
     public class Ammo : PictureBox
     {

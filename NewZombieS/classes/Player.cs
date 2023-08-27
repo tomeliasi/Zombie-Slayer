@@ -1,34 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Zombie_Slayer;
+using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace NewZombieS
+
+namespace Zombie_Slayer
 {
     public class Player : Entity
     {
-        public int ammo = 0;
-        public bool isAmmoVisible = false;
-        public bool isHealthkitVisable = false;
-        public int score = 0;
+        private int ammo = 0;
+        private bool isAmmoVisible = false;
+        private bool isHealthkitVisable = false;
+        private int score = 0;
 
         public int getAmmo() { return ammo; }
         public int getScore() { return score; }
         public bool getIsAmmoVisible() { return isAmmoVisible; }
+        public bool getIsHealthkitVisable() { return isHealthkitVisable; }
         public int getHealth() { return health; }
         public int getSpeed() { return speed; }
         public void setHeath(int health) { this.health += health; }
-        public void setScore(int score) { this.score = score; }
-        public void setAmmo(int ammo) { this.ammo = ammo; }
+
+        public void setMaxHealth() { this.health = 100; }
+        public void setScore(int score) { this.score += score; }
+        public void setAmmo(int ammo) { this.ammo += ammo; }
         public void setIsAmmoVisible(bool value) { isAmmoVisible = value; }
+        public void setIsHealthkitVisable(bool value) { isHealthkitVisable = value; }
+
         public Player()
         {
             Tag = "player";
             Size = new Size(100, 100);
             SizeMode = PictureBoxSizeMode.StretchImage;
+            initPlayer();
+        }
+
+        public void initPlayer()
+        {
             Image = Properties.Resources.hero_up;
             Location = new Point(300, 300);
             up = false;
@@ -94,7 +104,7 @@ namespace NewZombieS
             }
         }
 
-        public void playerKeyIsUp(KeyEventArgs e)
+        public void playerKeyIsUp(KeyEventArgs e, Ammo newAmmo, HealthKit healthKit)
         {
             if (e.KeyCode == Keys.Left)
                 left = false;
@@ -112,16 +122,19 @@ namespace NewZombieS
             {
                 Shoot();
             }
-            /*
-            if (ammo < 1 && !isAmmoVisable)
+
+            if (ammo < 1 && !this.isAmmoVisible)
             {
-                MakeAmmo();
+                newAmmo.MakeAmmo();
             }
-            if (playerHealth < 30 && !isHealthkitVisable)
+
+
+            if (health < 30 && !isHealthkitVisable)
             {
-                MakeHealthKit();
+                healthKit.makeHealthKit();
             }
-            */
+
+
         }
         public void Shoot()
         {
@@ -141,4 +154,5 @@ namespace NewZombieS
             shootBullet.makeBullet(this.FindForm());
         }
     }
+
 }

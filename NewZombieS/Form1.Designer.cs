@@ -1,5 +1,5 @@
 ﻿
-namespace NewZombieS
+namespace Zombie_Slayer
 {
     partial class Form1
     {
@@ -45,7 +45,6 @@ namespace NewZombieS
             this.healthBar.Size = new System.Drawing.Size(245, 49);
             this.healthBar.TabIndex = 1;
             this.healthBar.Value = 100;
-            this.healthBar.Click += new System.EventHandler(this.healthBar_Click);
             // 
             // GameTimer
             // 
@@ -72,13 +71,12 @@ namespace NewZombieS
             this.Kills.BackColor = System.Drawing.Color.Transparent;
             this.Kills.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.Kills.ForeColor = System.Drawing.Color.White;
-            this.Kills.Location = new System.Drawing.Point(255, 15);
+            this.Kills.Location = new System.Drawing.Point(291, 15);
             this.Kills.Name = "Kills";
             this.Kills.Size = new System.Drawing.Size(110, 41);
             this.Kills.TabIndex = 1;
             this.Kills.Text = "Kills: 0";
             this.Kills.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.Kills.Click += new System.EventHandler(this.Kills_Click_1);
             // 
             // health
             // 

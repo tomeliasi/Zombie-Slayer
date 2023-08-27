@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NewZombieS
+namespace Zombie_Slayer
 {
     public abstract class Entity : PictureBox
     {
