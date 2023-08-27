@@ -1,0 +1,10 @@
+C:\Users\tomel\source\repos\NewZombieS\NewZombieS\obj\Debug\NewZombieS.csproj.AssemblyReference.cache
+C:\Users\tomel\source\repos\NewZombieS\NewZombieS\obj\Debug\NewZombieS.Form1.resources
+C:\Users\tomel\source\repos\NewZombieS\NewZombieS\obj\Debug\NewZombieS.Properties.Resources.resources
+C:\Users\tomel\source\repos\NewZombieS\NewZombieS\obj\Debug\NewZombieS.csproj.GenerateResource.cache
+C:\Users\tomel\source\repos\NewZombieS\NewZombieS\obj\Debug\NewZombieS.csproj.CoreCompileInputs.cache
+C:\Users\tomel\source\repos\NewZombieS\NewZombieS\bin\Debug\NewZombieS.exe.config
+C:\Users\tomel\source\repos\NewZombieS\NewZombieS\bin\Debug\NewZombieS.exe
+C:\Users\tomel\source\repos\NewZombieS\NewZombieS\bin\Debug\NewZombieS.pdb
+C:\Users\tomel\source\repos\NewZombieS\NewZombieS\obj\Debug\NewZombieS.exe
+C:\Users\tomel\source\repos\NewZombieS\NewZombieS\obj\Debug\NewZombieS.pdb
