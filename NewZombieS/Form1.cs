@@ -9,6 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zombie_Slayer;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
 namespace Zombie_Slayer
 {
     public partial class Form1 : Form
@@ -21,6 +25,8 @@ namespace Zombie_Slayer
         bool gameOver;
         Random randNum = new Random();
         static public bool isBackToFront = false;
+        private object pts;
+
         public Form1()
         {
             InitializeComponent();
@@ -44,7 +50,7 @@ namespace Zombie_Slayer
 
             ammoCount.Text = "Ammo: " + player.getAmmo();
             Kills.Text = "kills: " + player.getScore();
-            pause.Click += handleClickOnPause;
+           
 
 
             player.move(ClientSize);
@@ -204,19 +210,6 @@ namespace Zombie_Slayer
             restartGame();
         }
 
-        private void handleClickOnPause(object sender,EventArgs e)
-        {
-            PictureBox pausescreen = new PictureBox();
-            pausescreen.Image = Properties.Resources.pausegamepic;
-            pausescreen.Size = new Size(500, 500);
-            pausescreen.SizeMode = PictureBoxSizeMode.StretchImage;
-            pausescreen.Location  = new Point((this.Width - pausescreen.Width) / 2, (this.Height - pausescreen.Height) / 2 - 50);
-            pausescreen.BringToFront();
-            this.Controls.Add(pausescreen);
-            GameTimer.Stop();
-
-        }
-
 
         private void removeObjectByTag(string tag)
         {
@@ -228,6 +221,25 @@ namespace Zombie_Slayer
                     control.Dispose();
                 }
             }
+        }
+
+        private void save_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();// + "..\\myModels";
+            saveFileDialog1.Filter = "model files (*.mdl)|*.mdl|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                IFormatter formatter = new BinaryFormatter();
+                using (Stream stream = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    //!!!!
+                    formatter.Serialize(stream, pts);
+                }
+            }
+
         }
     }
 }
