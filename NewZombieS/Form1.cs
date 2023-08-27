@@ -26,6 +26,7 @@ namespace Zombie_Slayer
         Random randNum = new Random();
         static public bool isBackToFront = false;
         private object pts;
+        private bool isPause = true;
 
         public Form1()
         {
@@ -240,6 +241,22 @@ namespace Zombie_Slayer
                 }
             }
 
+        }
+
+        private void pause_Click(object sender, EventArgs e)
+        {
+            if (isPause)
+            {
+                GameTimer.Stop();
+                pause.Image = Properties.Resources.PlayGame;
+                isPause = !isPause;
+            }
+            else
+            {
+                GameTimer.Start();
+                pause.Image = Properties.Resources.PauseGame;
+                isPause = !isPause;
+            }
         }
     }
 }

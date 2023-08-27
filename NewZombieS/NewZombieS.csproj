@@ -163,5 +163,17 @@
   <ItemGroup>
     <None Include="Resources\loading.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play-buttton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PauseGame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayGame.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -35,8 +35,10 @@ namespace Zombie_Slayer
             this.ammoCount = new System.Windows.Forms.Label();
             this.Kills = new System.Windows.Forms.Label();
             this.health = new System.Windows.Forms.Label();
+            this.pause = new System.Windows.Forms.PictureBox();
             this.save = new System.Windows.Forms.PictureBox();
             this.load = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.save)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.load)).BeginInit();
             this.SuspendLayout();
@@ -95,6 +97,17 @@ namespace Zombie_Slayer
             this.health.Text = "Health";
             this.health.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // pause
+            // 
+            this.pause.Image = global::Zombie_Slayer.Properties.Resources.PauseGame;
+            this.pause.Location = new System.Drawing.Point(932, 12);
+            this.pause.Name = "pause";
+            this.pause.Size = new System.Drawing.Size(65, 52);
+            this.pause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pause.TabIndex = 9;
+            this.pause.TabStop = false;
+            this.pause.Click += new System.EventHandler(this.pause_Click);
+            // 
             // save
             // 
             this.save.Image = global::Zombie_Slayer.Properties.Resources.save;
@@ -109,7 +122,7 @@ namespace Zombie_Slayer
             // load
             // 
             this.load.Image = global::Zombie_Slayer.Properties.Resources.loading;
-            this.load.Location = new System.Drawing.Point(866, 12);
+            this.load.Location = new System.Drawing.Point(855, 12);
             this.load.Name = "load";
             this.load.Size = new System.Drawing.Size(66, 52);
             this.load.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -122,7 +135,8 @@ namespace Zombie_Slayer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(954, 700);
+            this.ClientSize = new System.Drawing.Size(1021, 700);
+            this.Controls.Add(this.pause);
             this.Controls.Add(this.save);
             this.Controls.Add(this.load);
             this.Controls.Add(this.health);
@@ -135,6 +149,7 @@ namespace Zombie_Slayer
             this.Text = "Zombie Slayer";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyIsUp);
+            ((System.ComponentModel.ISupportInitialize)(this.pause)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.save)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.load)).EndInit();
             this.ResumeLayout(false);
@@ -151,6 +166,7 @@ namespace Zombie_Slayer
         private System.Windows.Forms.Label health;
         private System.Windows.Forms.PictureBox load;
         private System.Windows.Forms.PictureBox save;
+        private System.Windows.Forms.PictureBox pause;
     }
 }
 
