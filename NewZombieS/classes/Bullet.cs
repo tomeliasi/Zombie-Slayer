@@ -23,7 +23,7 @@ namespace Zombie_Slayer
             bullet.BackColor = Color.Transparent;
             bullet.Image = Properties.Resources.bulletup;
             bullet.SizeMode = PictureBoxSizeMode.StretchImage;
-            bullet.Size = new Size(20, 20);
+            bullet.Size = new Size(Constants.BulletSizeWidth, Constants.BulletSizeHeight);
             bullet.Tag = "bullet";
             bullet.Left = bulletLeft;
             bullet.Top = bulletTop;

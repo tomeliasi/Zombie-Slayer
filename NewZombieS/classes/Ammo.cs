@@ -22,11 +22,11 @@ namespace Zombie_Slayer
 
         public void MakeAmmo()
         {
-            Tag = "Ammo";
+            Tag = "ammo";
             Image = Properties.Resources.ammunition;
             Left = randNum.Next(0, mainForm.ClientSize.Width - Width);
             Top = randNum.Next(0, mainForm.ClientSize.Height - Height);
-            Size = new Size(70, 60);
+            Size = new Size(Constants.AmmoSizeWidth, Constants.AmmoSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
             mainForm.Controls.Add(this);
             BringToFront();

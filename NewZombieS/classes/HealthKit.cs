@@ -24,7 +24,7 @@ namespace Zombie_Slayer
             Image = Properties.Resources.first_aid_kit;
             Left = randNum.Next(0, mainForm.ClientSize.Width - Width);
             Top = randNum.Next(0, mainForm.ClientSize.Height - Height);
-            Size = new Size(70, 60);
+            Size = new Size(Constants.HealthKitSizeWidth, Constants.HealthKitSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
             mainForm.Controls.Add(this);
             BringToFront();

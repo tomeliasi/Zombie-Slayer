@@ -89,7 +89,7 @@ namespace Zombie_Slayer
                     zombieEntity.move(ClientSize);
 
                     if (player.Bounds.IntersectsWith(entity.Bounds))
-                        player.setHeath(-2);
+                        player.setHeath(-Constants.ZombieDammage);
 
                 }
                 foreach (Control entity2 in this.Controls)
@@ -117,7 +117,6 @@ namespace Zombie_Slayer
 
         private void keyIsDown(object sender, KeyEventArgs e)
         {
-            Console.WriteLine(sender);
             player.playerKeyIsDown(e, gameOver);
         }
 
@@ -135,6 +134,8 @@ namespace Zombie_Slayer
 
         private void restartGame()
         {
+            string[] tagsToRemove = { "gameOver", "reset", "ammoCount", "gameOver", "healthkit", "ammo" };
+
             this.Controls.Add(player);
             gameOver = false;
 
@@ -142,10 +143,9 @@ namespace Zombie_Slayer
 
             player.Image = Properties.Resources.hero_up;
 
-            removeObjectByTag("gameOver");
-            removeObjectByTag("reset");
-            removeObjectByTag("ammoCou");
-            removeObjectByTag("gameOver");
+            foreach (string tag in tagsToRemove) {
+                removeObjectByTag(tag);
+            }
 
 
 

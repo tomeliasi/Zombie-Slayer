@@ -5,7 +5,6 @@ using System.IO;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-
 namespace Zombie_Slayer
 {
     public class Player : Entity
@@ -32,7 +31,7 @@ namespace Zombie_Slayer
         public Player()
         {
             Tag = "player";
-            Size = new Size(100, 100);
+            Size = new Size(Constants.PlayerSizeWidth, Constants.PlayerSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
             initPlayer();
         }
@@ -40,17 +39,17 @@ namespace Zombie_Slayer
         public void initPlayer()
         {
             Image = Properties.Resources.hero_up;
-            Location = new Point(300, 300);
+            Location = new Point(Constants.PlayerLocationWidth, Constants.PlayerLocationHeight);
             up = false;
             down = false;
             left = false;
             right = false;
             isAmmoVisible = false;
             facing = "up";
-            health = 100;
-            speed = 20;
-            ammo = 10;
-            score = 0;
+            health = Constants.PlayerInitialHealth;
+            speed = Constants.PlayerSpeed;
+            ammo = Constants.PlayerInitialAmmo;
+            score = Constants.PlayerInitialScore;
         }
         public override void move(Size clientSize)
         {

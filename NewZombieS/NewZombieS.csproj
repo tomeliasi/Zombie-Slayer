@@ -53,6 +53,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="classes\Bullet.cs" />
+    <Compile Include="classes\Constants.cs" />
     <Compile Include="classes\Entity.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -155,12 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\skull.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pause.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pausegamepic.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

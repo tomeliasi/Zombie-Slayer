@@ -16,7 +16,7 @@ namespace Zombie_Slayer
             playerInstance = player;
 
             Tag = "zombie";
-            Size = new Size(100, 100);
+            Size = new Size(Constants.ZombieSizeWidth, Constants.ZombieSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
             initZombie(clientSize);
         }
@@ -30,8 +30,8 @@ namespace Zombie_Slayer
             left = false;
             right = false;
             facing = "down";
-            health = 1;
-            speed = 3;
+            health = Constants.ZombieInitialHealth;
+            speed = Constants.ZombieSpeed;
         }
 
 

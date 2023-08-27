@@ -110,7 +110,7 @@ namespace Zombie_Slayer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(922, 653);
+            this.ClientSize = new System.Drawing.Size(Constants.FormWidth, Constants.FormHeight);
             this.Controls.Add(this.pause);
             this.Controls.Add(this.health);
             this.Controls.Add(this.Kills);
