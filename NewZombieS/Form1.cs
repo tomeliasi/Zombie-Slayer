@@ -9,19 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zombie_Slayer;
-
 namespace Zombie_Slayer
 {
     public partial class Form1 : Form
     {
+
         private Player player = new Player();
         private Ammo ammo;
         private HealthKit healthKit;
         private List<Zombie> zombiesList = new List<Zombie>();
-
         bool gameOver;
         Random randNum = new Random();
-
+        static public bool isBackToFront = false;
         public Form1()
         {
             InitializeComponent();
@@ -45,6 +44,7 @@ namespace Zombie_Slayer
 
             ammoCount.Text = "Ammo: " + player.getAmmo();
             Kills.Text = "kills: " + player.getScore();
+            pause.Click += handleClickOnPause;
 
 
             player.move(ClientSize);
@@ -202,6 +202,19 @@ namespace Zombie_Slayer
         private void handleClickOnReset(object sender, EventArgs e)
         {
             restartGame();
+        }
+
+        private void handleClickOnPause(object sender,EventArgs e)
+        {
+            PictureBox pausescreen = new PictureBox();
+            pausescreen.Image = Properties.Resources.pausegamepic;
+            pausescreen.Size = new Size(500, 500);
+            pausescreen.SizeMode = PictureBoxSizeMode.StretchImage;
+            pausescreen.Location  = new Point((this.Width - pausescreen.Width) / 2, (this.Height - pausescreen.Height) / 2 - 50);
+            pausescreen.BringToFront();
+            this.Controls.Add(pausescreen);
+            GameTimer.Stop();
+
         }
 
 
