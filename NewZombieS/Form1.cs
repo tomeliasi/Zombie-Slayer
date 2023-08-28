@@ -31,8 +31,9 @@ namespace Zombie_Slayer
         public bool isGameOver = false;
         private object pts;
         private bool isPause = true;
-        SoundPlayer gameOverSound = new SoundPlayer(@"C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\Sounds\GameOverSound.wav");
-        SoundPlayer MainSound = new SoundPlayer(@"C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\Sounds\MainSound.wav");
+        SoundPlayer gameOverSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "GameOverSound.wav"));
+        SoundPlayer MainSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "MainSound.wav"));
+
 
         public Form1()
         {
