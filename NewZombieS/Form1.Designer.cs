@@ -45,10 +45,10 @@ namespace Zombie_Slayer
             // 
             // healthBar
             // 
-            this.healthBar.Location = new System.Drawing.Point(501, 15);
+            this.healthBar.Location = new System.Drawing.Point(465, 15);
             this.healthBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.healthBar.Name = "healthBar";
-            this.healthBar.Size = new System.Drawing.Size(245, 49);
+            this.healthBar.Size = new System.Drawing.Size(280, 41);
             this.healthBar.TabIndex = 1;
             this.healthBar.Value = 100;
             // 
@@ -90,7 +90,7 @@ namespace Zombie_Slayer
             this.health.BackColor = System.Drawing.Color.Transparent;
             this.health.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.health.ForeColor = System.Drawing.Color.White;
-            this.health.Location = new System.Drawing.Point(383, 15);
+            this.health.Location = new System.Drawing.Point(347, 15);
             this.health.Name = "health";
             this.health.Size = new System.Drawing.Size(112, 41);
             this.health.TabIndex = 2;

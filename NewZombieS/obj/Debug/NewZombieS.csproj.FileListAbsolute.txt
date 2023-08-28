@@ -29,3 +29,5 @@ C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie_Slayer.Form1.reso
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie_Slayer.Properties.Resources.resources
 C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\obj\Debug\Zombie_Slayer.Form1.resources
 C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\obj\Debug\Zombie_Slayer.Properties.Resources.resources
+C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\bin\Debug\Sounds\GameOverSound.wav
+C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\bin\Debug\Sounds\MainSound.wav

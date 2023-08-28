@@ -12,12 +12,15 @@ using Zombie_Slayer;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Media;
+
+// Now, you can use 'soundFilePath' to play the sound in your application.
+
 
 namespace Zombie_Slayer
 {
     public partial class Form1 : Form
     {
-
         private Player player = new Player();
         private Ammo ammo;
         private HealthKit healthKit;
@@ -25,13 +28,20 @@ namespace Zombie_Slayer
         bool gameOver;
         Random randNum = new Random();
         static public bool isBackToFront = false;
+        public bool isGameOver = false;
         private object pts;
         private bool isPause = true;
+        SoundPlayer gameOverSound = new SoundPlayer(@"C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\Sounds\GameOverSound.wav");
+        SoundPlayer MainSound = new SoundPlayer(@"C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\Sounds\MainSound.wav");
 
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent(); 
             restartGame();
+            if (!gameOver)
+                MainSound.Play();
+            else
+                MainSound.Stop();
 
             ammo = new Ammo(player, this);
             healthKit = new HealthKit(player, this);
@@ -42,20 +52,18 @@ namespace Zombie_Slayer
             if (player.getHealth() > 1)
             {
                 healthBar.Value = player.getHealth();
+
             }
             else
             {
                 gameOver = true;
                 handleGameOver();
+                gameOverSound.Play();
             }
-
             ammoCount.Text = "Ammo: " + player.getAmmo();
             Kills.Text = "kills: " + player.getScore();
-           
-
 
             player.move(ClientSize);
-
             collisions();
         }
 
@@ -190,7 +198,7 @@ namespace Zombie_Slayer
             gameOver.Location = new Point((this.Width - gameOver.Width) / 2, (this.Height - gameOver.Height) / 2 - 50);
             this.Controls.Add(gameOver);
             gameOver.BringToFront();
-
+            
 
             /////////////////reset button/////////////////
 
@@ -202,8 +210,8 @@ namespace Zombie_Slayer
             reset.Location = new Point((this.Width - gameOver.Width) / 2 + 100, (this.Height - gameOver.Height) / 2 + 250);
             this.Controls.Add(reset);
             reset.BringToFront();
-
             reset.Click += handleClickOnReset;
+            
         }
 
         private void handleClickOnReset(object sender, EventArgs e)

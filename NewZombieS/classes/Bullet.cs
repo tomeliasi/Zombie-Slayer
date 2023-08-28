@@ -64,7 +64,7 @@ namespace Zombie_Slayer
             }
 
 
-            if (bullet.Left < 10 || bullet.Left > 860 || bullet.Top < 10 || bullet.Top > 600)
+            if (bullet.Left < 10 || bullet.Left > 1309 || bullet.Top < 10 || bullet.Top > 774)
             {
                 bulletTimer.Stop();
                 bulletTimer.Dispose();
