@@ -182,7 +182,9 @@ namespace Zombie_Slayer
             for (int i = 0; i < 3; i++)
                 makeZombie();
             player.initPlayer();
-
+            MainSound.Play();
+            player.setIsAmmoVisible(false);
+            player.setIsHealthkitVisable(false);
         }
 
         private void handleGameOver()
