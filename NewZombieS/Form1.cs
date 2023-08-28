@@ -25,12 +25,13 @@ namespace Zombie_Slayer
         private Ammo ammo;
         private HealthKit healthKit;
         private List<Zombie> zombiesList = new List<Zombie>();
-        bool gameOver;
-        Random randNum = new Random();
         static public bool isBackToFront = false;
         public bool isGameOver = false;
         private object pts;
         private bool isPause = true;
+
+        bool gameOver;
+        Random randNum = new Random();
         SoundPlayer gameOverSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "GameOverSound.wav"));
         SoundPlayer MainSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "MainSound.wav"));
 
@@ -66,6 +67,7 @@ namespace Zombie_Slayer
 
             player.move(ClientSize);
             collisions();
+
         }
 
         private void collisions()
@@ -81,8 +83,11 @@ namespace Zombie_Slayer
                     {
                         this.Controls.Remove(ammoEntity);
                         ammoEntity.Dispose();
+                        
                         player.setAmmo(10);
                         player.setIsAmmoVisible(false);
+                        ammo = null;
+                        ammo = new Ammo(player, this);
                     }
                 }
                 if (entity is HealthKit)
@@ -96,7 +101,10 @@ namespace Zombie_Slayer
                             player.setHeath(30);
                         else
                             player.setMaxHealth();
+
                         player.setIsHealthkitVisable(false);
+                        healthKit = null;
+                        healthKit = new HealthKit(player, this);
                     }
                 }
                 if (entity is Zombie)

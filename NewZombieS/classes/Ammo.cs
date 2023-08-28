@@ -30,7 +30,6 @@ namespace Zombie_Slayer
             SizeMode = PictureBoxSizeMode.StretchImage;
             mainForm.Controls.Add(this);
             BringToFront();
-            playerInstance.BringToFront();
             playerInstance.setIsAmmoVisible(true);
         }
 
