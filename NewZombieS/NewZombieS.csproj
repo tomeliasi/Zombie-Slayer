@@ -74,6 +74,9 @@
     <Compile Include="classes\Zombie.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="classes\shieldZombie.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,6 +179,10 @@
     <None Include="Resources\PlayGame.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\shieldZombieUp.png" />
+    <None Include="Resources\shieldZombieRight.png" />
+    <None Include="Resources\shieldZombieLeft.png" />
+    <None Include="Resources\shieldZombieDown.png" />
     <Content Include="Sounds\GameOverSound.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

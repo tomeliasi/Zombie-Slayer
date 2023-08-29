@@ -25,10 +25,12 @@ namespace Zombie_Slayer
         private Ammo ammo;
         private HealthKit healthKit;
         private List<Zombie> zombiesList = new List<Zombie>();
+        private List<shieldZombie> shieldZombiesList = new List<shieldZombie>();
         static public bool isBackToFront = false;
         public bool isGameOver = false;
         private object pts;
         private bool isPause = true;
+        
 
         bool gameOver;
         Random randNum = new Random();
@@ -116,6 +118,13 @@ namespace Zombie_Slayer
                         player.setHeath(-Constants.ZombieDammage);
 
                 }
+                if(entity is shieldZombie)
+                {
+                    shieldZombie sheildzombieEntity = (shieldZombie)entity;
+                    sheildzombieEntity.move(ClientSize);
+                    if (player.Bounds.IntersectsWith(entity.Bounds))
+                        player.setHeath(-2 * Constants.ZombieDammage);
+                }
                 foreach (Control entity2 in this.Controls)
                 {
                     if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is Zombie)
@@ -133,7 +142,30 @@ namespace Zombie_Slayer
                             makeZombie();
                         }
                     }
+
+                    if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is shieldZombie)
+                    {
+                        shieldZombie zombieEntity = (shieldZombie)entity;
+
+                        if (zombieEntity.Bounds.IntersectsWith(entity2.Bounds))
+                        {
+                            zombieEntity.zombiedamage--;
+                            zombieEntity.shield = 0;
+                            player.setScore(1);
+                            if(zombieEntity.shield == 0 && zombieEntity.zombiedamage == 0)
+                            {
+                                this.Controls.Remove(entity2);
+                                ((PictureBox)entity2).Dispose();
+                                this.Controls.Remove(zombieEntity);
+                                zombieEntity.Dispose();
+                                shieldZombiesList.Remove(zombieEntity);
+                                makeShieldZombie();
+                            }
+                        }
+                    }
+
                 }
+               
 
             }
         }
@@ -153,6 +185,13 @@ namespace Zombie_Slayer
         {
             Zombie zombie = new Zombie(player, this.ClientSize);
             zombiesList.Add(zombie);
+            this.Controls.Add(zombie);
+        }
+        private void makeShieldZombie()
+        {
+            shieldZombie zombie = new shieldZombie(player, this.ClientSize);
+            //zombie.shield = 1;
+            shieldZombiesList.Add(zombie);
             this.Controls.Add(zombie);
         }
 
@@ -178,9 +217,18 @@ namespace Zombie_Slayer
                 this.Controls.Remove(zombie);
             }
             zombiesList.Clear();
+            foreach(PictureBox zombie in shieldZombiesList)
+            {
+                this.Controls.Remove(zombie);
+            }
+
+            shieldZombiesList.Clear();
 
             for (int i = 0; i < 3; i++)
                 makeZombie();
+            for (int i = 0; i < 2; i++)
+                makeShieldZombie();
+
             player.initPlayer();
             MainSound.Play();
             player.setIsAmmoVisible(false);
