@@ -14,7 +14,6 @@ namespace Zombie_Slayer
         protected Player playerInstance;
         protected Random randNum = new Random();
         protected Size clientSize;
-
         protected Bitmap imageRight;
         protected Bitmap imageLeft;
         protected Bitmap imageUp;
@@ -85,7 +84,7 @@ namespace Zombie_Slayer
 
         public void initZombie()
         {
-            Left = randNum.Next(0, 900);
+            Left = randNum.Next(0, 600);
             Top = randNum.Next(0, 600);
             //Image = Properties.Resources.zombieGDown;
             up = false;

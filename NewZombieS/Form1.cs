@@ -139,6 +139,7 @@ namespace Zombie_Slayer
                             zombieEntity.Dispose();
                             zombiesList.Remove(zombieEntity);
                             makeZombie();
+                            //GetRandomZombieFromList(zombiesList);
                         }
                     }
 
@@ -158,8 +159,7 @@ namespace Zombie_Slayer
                                 this.Controls.Remove(zombieEntity);
                                 zombieEntity.Dispose();
                                 shieldZombiesList.Remove(zombieEntity);
-                                if(shieldZombiesList.Count > 2)
-                                makeShieldZombie();
+                                makeZombie();
                             }
                         }
                     }
@@ -182,20 +182,14 @@ namespace Zombie_Slayer
 
         private void makeZombie()
         {
+            zombiesList.Clear();
             ZombieAbstract zombie = new Zombie(player, this.ClientSize);
             ZombieAbstract zombie1 = new shieldZombie(player, this.ClientSize);
+            ((shieldZombie)zombie1).shield = 1;
             zombiesList.Add(zombie);
             zombiesList.Add(zombie1);
-
-            this.Controls.Add(zombie);
-            this.Controls.Add(zombie1);
-        }
-        private void makeShieldZombie()
-        {
-            shieldZombie zombie = new shieldZombie(player, this.ClientSize);
-            zombie.shield = 1;
-            shieldZombiesList.Add(zombie);
-            this.Controls.Add(zombie);
+            int randomIndex = randNum.Next(0, zombiesList.Count);
+            this.Controls.Add(zombiesList[randomIndex]);
         }
         
 
@@ -360,7 +354,5 @@ namespace Zombie_Slayer
                 // For example, you might need to remove existing controls and add the loaded ones
             }
         }
-
-
     }
 }

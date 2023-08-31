@@ -78,7 +78,7 @@
     <Compile Include="classes\shieldZombie.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ZombieAbstract.cs">
+    <Compile Include="classes\ZombieAbstract.cs">
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="Form1.resx">

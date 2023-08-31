@@ -2,14 +2,14 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Zombie_Slayer;
-
+using Zombie_Slayer.Properties;
 namespace Zombie_Slayer
 {
     public class Zombie : ZombieAbstract
     {
         public Random randNum = new Random();
-        
+        private Player playerInstance;
+
         public Zombie(Player player, Size clientSize)
         {
             playerInstance = player;
@@ -21,6 +21,8 @@ namespace Zombie_Slayer
         }
         public void initZombie(Size clientSize)
         {
+            Left = randNum.Next(0, clientSize.Width - Width);
+            Top = randNum.Next(0, clientSize.Height - Height);
             Image = Properties.Resources.zombieGDown;
             health = Constants.ZombieInitialHealth;
             speed = Constants.ZombieSpeed;

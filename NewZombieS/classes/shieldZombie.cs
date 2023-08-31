@@ -9,14 +9,13 @@ public class shieldZombie : ZombieAbstract
 {
     private Player playerInstance;
     private Random randNum = new Random();
-    public int shield;
+    public int shield = 1;
     public int zombiedamage = 2;
 
     public shieldZombie(Player player, Size clientSize) 
     {
         playerInstance = player;
         Tag = "shieldzombie";
-        shield = 1;
         Size = new Size(Constants.ZombieSizeWidth, Constants.ZombieSizeHeight);
         SizeMode = PictureBoxSizeMode.StretchImage;
         initShieldZombie(clientSize);
