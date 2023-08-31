@@ -195,7 +195,7 @@ namespace Zombie_Slayer
 
         private void restartGame()
         {
-            string[] tagsToRemove = { "gameOver", "reset", "ammoCount", "gameOver", "healthkit", "ammo" };
+            string[] tagsToRemove = { "gameOver", "reset", "ammoCount", "gameOver", "healthkit", "ammo", "shieldzombie", "zombie" };
 
             this.Controls.Add(player);
             gameOver = false;
@@ -208,21 +208,9 @@ namespace Zombie_Slayer
                 removeObjectByTag(tag);
             }
 
-
-
-            foreach (PictureBox zombie in zombiesList)
-            {
-                this.Controls.Remove(zombie);
-            }
             zombiesList.Clear();
-            foreach(PictureBox zombie in shieldZombiesList)
-            {
-                this.Controls.Remove(zombie);
-            }
 
-            shieldZombiesList.Clear();
-
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
                 makeZombie();
 
             player.initPlayer();
@@ -287,72 +275,72 @@ namespace Zombie_Slayer
             }
         }
 
-        private void save_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
-            saveFileDialog1.Filter = "model files (*.mdl)|*.mdl|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 1;
-            saveFileDialog1.RestoreDirectory = true;
-
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                GameState gameState = new GameState();
-                gameState.PlayerData = player;  // Assuming Player class is serializable
-                gameState.ZombiesList = zombiesList;
-
-                IFormatter formatter = new BinaryFormatter();
-                using (Stream stream = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
-                {
-                    formatter.Serialize(stream, gameState);
-                }
-            }
-        }
-
 
         private void pause_Click(object sender, EventArgs e)
         {
             if (isPause)
             {
                 GameTimer.Stop();
+                MainSound.Stop();
                 pause.Image = Properties.Resources.PlayGame;
                 isPause = !isPause;
             }
             else
             {
+                MainSound.Play();
                 GameTimer.Start();
                 pause.Image = Properties.Resources.PauseGame;
                 isPause = !isPause;
             }
         }
 
+        // To save the game state
+        private void save_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
+            saveFileDialog1.Filter = "MDL files (*.mdl)|*.mdl|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                GameState gameState = new GameState();
+                gameState.PlayerData = player;
+                gameState.ZombiesList = zombiesList;
+                // Set other game state data in gameState as needed
+
+                gameState.Save(saveFileDialog1.FileName);
+            }
+        }
+
+
+        // To load the game state
         private void load_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
-            openFileDialog1.Filter = "model files (*.mdl)|*.mdl|All files (*.*)|*.*";
+            openFileDialog1.Filter = "MDL files (*.mdl)|*.mdl|All files (*.*)|*.*";
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                GameState gameState;
-                IFormatter formatter = new BinaryFormatter();
+                GameState gameState = GameState.Load(openFileDialog1.FileName);
 
-                using (Stream stream = new FileStream(openFileDialog1.FileName, FileMode.Open))
+                if (gameState != null)
                 {
-                    gameState = (GameState)formatter.Deserialize(stream);
+                    // Update your game state with the loaded data
+                    player = gameState.PlayerData;
+                    zombiesList = gameState.ZombiesList;
+                    // Update other game elements as needed
+
+                    // Redraw the game or update UI accordingly
+                    // For example, you might need to remove existing controls and add the loaded ones
                 }
-
-                // Now you have the loaded game state, you can use it to restore the game's state
-                player = gameState.PlayerData; // Update player data
-                zombiesList = gameState.ZombiesList; // Update zombies list
-
-                // Update other game elements as needed
-
-                // Redraw the game or update UI accordingly
-                // For example, you might need to remove existing controls and add the loaded ones
             }
         }
+
+
     }
 }
