@@ -128,6 +128,7 @@ namespace Zombie_Slayer
             this.load.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.load.TabIndex = 7;
             this.load.TabStop = false;
+            this.load.Click += new System.EventHandler(this.load_Click);
             // 
             // Form1
             // 

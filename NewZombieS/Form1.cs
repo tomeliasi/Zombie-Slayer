@@ -13,7 +13,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Media;
-
 // Now, you can use 'soundFilePath' to play the sound in your application.
 
 
@@ -24,7 +23,7 @@ namespace Zombie_Slayer
         private Player player = new Player();
         private Ammo ammo;
         private HealthKit healthKit;
-        private List<Zombie> zombiesList = new List<Zombie>();
+        private List<ZombieAbstract> zombiesList = new List<ZombieAbstract>();
         private List<shieldZombie> shieldZombiesList = new List<shieldZombie>();
         static public bool isBackToFront = false;
         public bool isGameOver = false;
@@ -159,6 +158,7 @@ namespace Zombie_Slayer
                                 this.Controls.Remove(zombieEntity);
                                 zombieEntity.Dispose();
                                 shieldZombiesList.Remove(zombieEntity);
+                                if(shieldZombiesList.Count > 2)
                                 makeShieldZombie();
                             }
                         }
@@ -169,7 +169,6 @@ namespace Zombie_Slayer
 
             }
         }
-
 
         private void keyIsDown(object sender, KeyEventArgs e)
         {
@@ -183,17 +182,22 @@ namespace Zombie_Slayer
 
         private void makeZombie()
         {
-            Zombie zombie = new Zombie(player, this.ClientSize);
+            ZombieAbstract zombie = new Zombie(player, this.ClientSize);
+            ZombieAbstract zombie1 = new shieldZombie(player, this.ClientSize);
             zombiesList.Add(zombie);
+            zombiesList.Add(zombie1);
+
             this.Controls.Add(zombie);
+            this.Controls.Add(zombie1);
         }
         private void makeShieldZombie()
         {
             shieldZombie zombie = new shieldZombie(player, this.ClientSize);
-            //zombie.shield = 1;
+            zombie.shield = 1;
             shieldZombiesList.Add(zombie);
             this.Controls.Add(zombie);
         }
+        
 
         private void restartGame()
         {
@@ -226,8 +230,6 @@ namespace Zombie_Slayer
 
             for (int i = 0; i < 3; i++)
                 makeZombie();
-            for (int i = 0; i < 2; i++)
-                makeShieldZombie();
 
             player.initPlayer();
             MainSound.Play();
@@ -294,21 +296,25 @@ namespace Zombie_Slayer
         private void save_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();// + "..\\myModels";
+            saveFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
             saveFileDialog1.Filter = "model files (*.mdl)|*.mdl|All files (*.*)|*.*";
             saveFileDialog1.FilterIndex = 1;
             saveFileDialog1.RestoreDirectory = true;
+
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                GameState gameState = new GameState();
+                gameState.PlayerData = player;  // Assuming Player class is serializable
+                gameState.ZombiesList = zombiesList;
+
                 IFormatter formatter = new BinaryFormatter();
                 using (Stream stream = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
-                    //!!!!
-                    formatter.Serialize(stream, pts);
+                    formatter.Serialize(stream, gameState);
                 }
             }
-
         }
+
 
         private void pause_Click(object sender, EventArgs e)
         {
@@ -325,5 +331,36 @@ namespace Zombie_Slayer
                 isPause = !isPause;
             }
         }
+
+        private void load_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
+            openFileDialog1.Filter = "model files (*.mdl)|*.mdl|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                GameState gameState;
+                IFormatter formatter = new BinaryFormatter();
+
+                using (Stream stream = new FileStream(openFileDialog1.FileName, FileMode.Open))
+                {
+                    gameState = (GameState)formatter.Deserialize(stream);
+                }
+
+                // Now you have the loaded game state, you can use it to restore the game's state
+                player = gameState.PlayerData; // Update player data
+                zombiesList = gameState.ZombiesList; // Update zombies list
+
+                // Update other game elements as needed
+
+                // Redraw the game or update UI accordingly
+                // For example, you might need to remove existing controls and add the loaded ones
+            }
+        }
+
+
     }
 }

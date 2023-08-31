@@ -5,17 +5,18 @@ using System.Windows.Forms;
 using Zombie_Slayer.Properties;
 
 
-public class shieldZombie : Zombie
+public class shieldZombie : ZombieAbstract
 {
     private Player playerInstance;
     private Random randNum = new Random();
-    public int shield = 1;
+    public int shield;
     public int zombiedamage = 2;
 
-    public shieldZombie(Player player, Size clientSize) : base(player, clientSize)
+    public shieldZombie(Player player, Size clientSize) 
     {
         playerInstance = player;
         Tag = "shieldzombie";
+        shield = 1;
         Size = new Size(Constants.ZombieSizeWidth, Constants.ZombieSizeHeight);
         SizeMode = PictureBoxSizeMode.StretchImage;
         initShieldZombie(clientSize);
@@ -26,11 +27,6 @@ public class shieldZombie : Zombie
         Left = randNum.Next(0, clientSize.Width - Width);
         Top = randNum.Next(0, clientSize.Height - Height);
         Image = Resources.shieldZombieDown;
-        up = false;
-        down = false;
-        left = false;
-        right = false;
-        facing = "down";
         health = Constants.shieldZombieInitialHealth;
         speed = Constants.shieldZombieSpeed;
     }

@@ -6,11 +6,10 @@ using Zombie_Slayer;
 
 namespace Zombie_Slayer
 {
-    public class Zombie : Entity
+    public class Zombie : ZombieAbstract
     {
-        private Player playerInstance;
-        private Random randNum = new Random();
-
+        public Random randNum = new Random();
+        
         public Zombie(Player player, Size clientSize)
         {
             playerInstance = player;
@@ -18,18 +17,11 @@ namespace Zombie_Slayer
             Tag = "zombie";
             Size = new Size(Constants.ZombieSizeWidth, Constants.ZombieSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
-            initZombie(clientSize);
+            initZombie();
         }
         public void initZombie(Size clientSize)
         {
-            Left = randNum.Next(0, clientSize.Width - Width);
-            Top = randNum.Next(0, clientSize.Height - Height);
             Image = Properties.Resources.zombieGDown;
-            up = false;
-            down = false;
-            left = false;
-            right = false;
-            facing = "down";
             health = Constants.ZombieInitialHealth;
             speed = Constants.ZombieSpeed;
         }
@@ -63,8 +55,6 @@ namespace Zombie_Slayer
                     Image = Properties.Resources.zombieGDown;
                 }
             }
-
         }
-
     }
 }
