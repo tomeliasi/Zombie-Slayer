@@ -28,7 +28,8 @@ namespace Zombie_Slayer
         public bool isGameOver = false;
         private object pts;
         private bool isPause = true;
-        
+        private GameState gameState = new GameState();
+
 
         bool gameOver;
         Random randNum = new Random();
@@ -53,6 +54,10 @@ namespace Zombie_Slayer
         {
             if (player.getHealth() > 1)
             {
+                if(player.getHealth() > 100)
+                {
+                    player.setHeath(-100);
+                }
                 healthBar.Value = player.getHealth();
 
             }
@@ -294,82 +299,68 @@ namespace Zombie_Slayer
         }
 
         // To save the game state
+        private void SaveGameState()
+        {
+            try
+            {
+                using (FileStream fs = new FileStream("gamestate.dat", FileMode.Create))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    // Set the properties of the gameState object.
+                    gameState.PlayerHealth = player.getHealth();
+                    gameState.PlayerScore = player.getScore();
+                    gameState.PlayerAmmo = player.getAmmo();
+                    formatter.Serialize(fs, gameState);
+                }
+                MessageBox.Show("Game state saved successfully.", "Save Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while saving game state: " + ex.Message, "Save Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Load the game state from a binary file.
+        private void LoadGameState()
+        {
+            try
+            {
+                if (File.Exists("gamestate.dat"))
+                {
+                    using (FileStream fs = new FileStream("gamestate.dat", FileMode.Open))
+                    {
+                        BinaryFormatter formatter = new BinaryFormatter();
+                        // Deserialize the gameState object.
+                        gameState = (GameState)formatter.Deserialize(fs);
+                        // Update the game based on the loaded state.
+                        player.setHeath(gameState.PlayerHealth);
+                        player.setScore(gameState.PlayerScore);
+                        player.setAmmo(gameState.PlayerAmmo-10);
+                    }
+                    MessageBox.Show("Game state loaded successfully.", "Load Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No saved game state found.", "Load Game", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while loading game state: " + ex.Message, "Load Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Event handler for Save button click.
         private void save_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
-            saveFileDialog1.Filter = "MDL files (*.mdl)|*.mdl|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 1;
-            saveFileDialog1.RestoreDirectory = true;
-
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                GameState gameState = new GameState();
-                gameState.PlayerData = player;
-                gameState.ZombiesList = zombiesList;
-                gameState.PlayerX = player.Left;
-                gameState.PlayerY = player.Top;
-
-                foreach (ZombieAbstract zombie in zombiesList)
-                {
-                    gameState.ZombiePositions.Add(new Tuple<int, int>(zombie.Left, zombie.Top));
-                }
-
-                // Set other game state data in gameState as needed
-
-                gameState.Save(saveFileDialog1.FileName);
-            }
+            SaveGameState();
         }
 
-
-
-
+        // Event handler for Load button click.
         private void load_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
-            openFileDialog1.Filter = "MDL files (*.mdl)|*.mdl|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 1;
-            openFileDialog1.RestoreDirectory = true;
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                GameState gameState = GameState.Load(openFileDialog1.FileName);
-
-                if (gameState != null)
-                {
-                    // Update your game state with the loaded data
-                    player = gameState.PlayerData;
-                    player.Left = gameState.PlayerX;
-                    player.Top = gameState.PlayerY;
-
-                    zombiesList = gameState.ZombiesList;
-
-                    // Clear existing zombies from the form
-                    foreach (ZombieAbstract zombie in zombiesList)
-                    {
-                        this.Controls.Remove(zombie);
-                        zombie.Dispose();
-                    }
-
-                    // Recreate zombies at the loaded positions
-                    foreach (Tuple<int, int> position in gameState.ZombiePositions)
-                    {
-                        ZombieAbstract zombie = new Zombie(player, this.ClientSize);
-                        zombie.Left = position.Item1;
-                        zombie.Top = position.Item2;
-                        zombiesList.Add(zombie);
-                        this.Controls.Add(zombie);
-                    }
-
-                    // Update other game elements as needed
-
-                    // Redraw the game or update UI accordingly
-                }
-            }
+            LoadGameState();
         }
-
-
 
     }
 }
