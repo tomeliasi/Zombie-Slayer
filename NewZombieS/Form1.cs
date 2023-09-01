@@ -23,7 +23,8 @@ namespace Zombie_Slayer
         private Ammo ammo;
         private HealthKit healthKit;
         private List<ZombieAbstract> zombiesList = new List<ZombieAbstract>();
-        private List<shieldZombie> shieldZombiesList = new List<shieldZombie>();
+        private List<BigZombie> bigZombiesList = new List<BigZombie>();
+
         static public bool isBackToFront = false;
         public bool isGameOver = false;
         private object pts;
@@ -121,12 +122,12 @@ namespace Zombie_Slayer
                         player.setHeath(-Constants.ZombieDammage);
 
                 }
-                if(entity is shieldZombie)
+                if(entity is BigZombie)
                 {
-                    shieldZombie sheildzombieEntity = (shieldZombie)entity;
-                    sheildzombieEntity.move(ClientSize);
+                    BigZombie bigZombieEntity = (BigZombie)entity;
+                    bigZombieEntity.move(ClientSize);
                     if (player.Bounds.IntersectsWith(entity.Bounds))
-                        player.setHeath(-2 * Constants.ZombieDammage);
+                        player.setHeath(-bigZombieEntity.getDemmage());
                 }
                 foreach (Control entity2 in this.Controls)
                 {
@@ -147,22 +148,22 @@ namespace Zombie_Slayer
                         }
                     }
 
-                    if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is shieldZombie)
+                    if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is BigZombie)
                     {
-                        shieldZombie zombieEntity = (shieldZombie)entity;
+                        BigZombie zombieEntity = (BigZombie)entity;
 
                         if (zombieEntity.Bounds.IntersectsWith(entity2.Bounds))
                         {
-                            zombieEntity.zombiedamage--;
-                            zombieEntity.shield = 0;
+                            zombieEntity.zombieGetDemmaged();
+
                             player.setScore(1);
-                            if(zombieEntity.shield == 0 && zombieEntity.zombiedamage == 0)
+                            if(zombieEntity.getHealth() == 0 && zombieEntity.getWidth() == 100)
                             {
                                 this.Controls.Remove(entity2);
                                 ((PictureBox)entity2).Dispose();
                                 this.Controls.Remove(zombieEntity);
                                 zombieEntity.Dispose();
-                                shieldZombiesList.Remove(zombieEntity);
+                                bigZombiesList.Remove(zombieEntity);
                                 makeZombie();
                             }
                         }
@@ -188,10 +189,10 @@ namespace Zombie_Slayer
         {
             zombiesList.Clear();
             ZombieAbstract zombie = new Zombie(player, this.ClientSize);
-            ZombieAbstract zombie1 = new shieldZombie(player, this.ClientSize);
-            ((shieldZombie)zombie1).shield = 1;
+            ZombieAbstract zombieBig = new BigZombie(player, this.ClientSize);
+            //((shieldZombie)zombie1).shield = 1;
             zombiesList.Add(zombie);
-            zombiesList.Add(zombie1);
+            zombiesList.Add(zombieBig);
             int randomIndex = randNum.Next(0, zombiesList.Count);
             this.Controls.Add(zombiesList[randomIndex]);
         }
