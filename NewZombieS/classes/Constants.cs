@@ -45,6 +45,7 @@ namespace Zombie_Slayer
         public const int ZombieSpeed = 3;
         public const int shieldZombieSpeed = 2;
         public const int ZombieDammage = 1;
+        public const int ZombieShield = 1;
 
 
 

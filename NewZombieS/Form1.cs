@@ -13,7 +13,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Media;
-// Now, you can use 'soundFilePath' to play the sound in your application.
 
 
 namespace Zombie_Slayer
@@ -308,6 +307,14 @@ namespace Zombie_Slayer
                 GameState gameState = new GameState();
                 gameState.PlayerData = player;
                 gameState.ZombiesList = zombiesList;
+                gameState.PlayerX = player.Left;
+                gameState.PlayerY = player.Top;
+
+                foreach (ZombieAbstract zombie in zombiesList)
+                {
+                    gameState.ZombiePositions.Add(new Tuple<int, int>(zombie.Left, zombie.Top));
+                }
+
                 // Set other game state data in gameState as needed
 
                 gameState.Save(saveFileDialog1.FileName);
@@ -315,7 +322,8 @@ namespace Zombie_Slayer
         }
 
 
-        // To load the game state
+
+
         private void load_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -332,14 +340,35 @@ namespace Zombie_Slayer
                 {
                     // Update your game state with the loaded data
                     player = gameState.PlayerData;
+                    player.Left = gameState.PlayerX;
+                    player.Top = gameState.PlayerY;
+
                     zombiesList = gameState.ZombiesList;
+
+                    // Clear existing zombies from the form
+                    foreach (ZombieAbstract zombie in zombiesList)
+                    {
+                        this.Controls.Remove(zombie);
+                        zombie.Dispose();
+                    }
+
+                    // Recreate zombies at the loaded positions
+                    foreach (Tuple<int, int> position in gameState.ZombiePositions)
+                    {
+                        ZombieAbstract zombie = new Zombie(player, this.ClientSize);
+                        zombie.Left = position.Item1;
+                        zombie.Top = position.Item2;
+                        zombiesList.Add(zombie);
+                        this.Controls.Add(zombie);
+                    }
+
                     // Update other game elements as needed
 
                     // Redraw the game or update UI accordingly
-                    // For example, you might need to remove existing controls and add the loaded ones
                 }
             }
         }
+
 
 
     }

@@ -32,4 +32,3 @@ C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעש
 C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\bin\Debug\Sounds\MainSound.wav
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Sounds\GameOverSound.wav
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Sounds\MainSound.wav
-C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.csproj.AssemblyReference.cache

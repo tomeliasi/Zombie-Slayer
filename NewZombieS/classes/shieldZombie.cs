@@ -27,6 +27,7 @@ public class shieldZombie : ZombieAbstract
         Top = randNum.Next(0, clientSize.Height - Height);
         Image = Resources.shieldZombieDown;
         health = Constants.shieldZombieInitialHealth;
+        shield = Constants.ZombieShield;
         speed = Constants.shieldZombieSpeed;
     }
 
