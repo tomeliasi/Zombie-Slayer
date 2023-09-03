@@ -1,8 +1,6 @@
-﻿using Zombie_Slayer;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Zombie_Slayer.Properties;
 namespace Zombie_Slayer
 {
     public class Zombie : ZombieAbstract

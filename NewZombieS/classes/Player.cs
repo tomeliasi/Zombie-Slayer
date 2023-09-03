@@ -20,7 +20,7 @@ namespace Zombie_Slayer
         public bool getIsHealthkitVisable() { return isHealthkitVisable; }
         public int getHealth() { return health; }
         public int getSpeed() { return speed; }
-        public void setHeath(int health) { this.health += health; }
+        public void setHealth(int health) { this.health += health; }
 
         public void setMaxHealth() { this.health = 100; }
         public void setScore(int score) { this.score += score; }

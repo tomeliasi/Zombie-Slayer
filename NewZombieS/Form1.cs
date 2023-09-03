@@ -1,18 +1,15 @@
-﻿using Zombie_Slayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Zombie_Slayer;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Media;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+
+
 
 
 namespace Zombie_Slayer
@@ -37,7 +34,6 @@ namespace Zombie_Slayer
         SoundPlayer gameOverSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "GameOverSound.wav"));
         SoundPlayer MainSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "MainSound.wav"));
 
-
         public Form1()
         {
             InitializeComponent(); 
@@ -57,7 +53,7 @@ namespace Zombie_Slayer
             {
                 if(player.getHealth() > 100)
                 {
-                    player.setHeath(-100);
+                    player.setHealth(-100);
                 }
                 healthBar.Value = player.getHealth();
 
@@ -80,7 +76,7 @@ namespace Zombie_Slayer
         {
 
             foreach (Control entity in this.Controls)
-            {
+            { 
                 if (entity is Ammo)
                 {
                     Ammo ammoEntity = (Ammo)entity;
@@ -104,7 +100,7 @@ namespace Zombie_Slayer
                         this.Controls.Remove(halthKitEntity);
                         halthKitEntity.Dispose();
                         if (player.getHealth() <= 70)
-                            player.setHeath(30);
+                            player.setHealth(30);
                         else
                             player.setMaxHealth();
 
@@ -119,7 +115,7 @@ namespace Zombie_Slayer
                     zombieEntity.move(ClientSize);
 
                     if (player.Bounds.IntersectsWith(entity.Bounds))
-                        player.setHeath(-Constants.ZombieDammage);
+                        player.setHealth(-Constants.ZombieDammage);
 
                 }
                 if(entity is BigZombie)
@@ -128,7 +124,7 @@ namespace Zombie_Slayer
                     bigZombieEntity.move(ClientSize);
 
                     if (player.Bounds.IntersectsWith(entity.Bounds))
-                        player.setHeath(-bigZombieEntity.getDemmage());
+                        player.setHealth(-bigZombieEntity.getDemmage());
 
                 }
                 foreach (Control entity2 in this.Controls)
@@ -170,8 +166,6 @@ namespace Zombie_Slayer
                         }
                     }
                 }
-               
-
             }
         }
 
@@ -299,7 +293,6 @@ namespace Zombie_Slayer
             }
         }
 
-        // To save the game state
         private void SaveGameState()
         {
             try
@@ -307,21 +300,18 @@ namespace Zombie_Slayer
                 using (FileStream fs = new FileStream("gamestate.dat", FileMode.Create))
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
-                    // Set the properties of the gameState object.
                     gameState.PlayerHealth = player.getHealth();
                     gameState.PlayerScore = player.getScore();
                     gameState.PlayerAmmo = player.getAmmo();
                     formatter.Serialize(fs, gameState);
                 }
-                MessageBox.Show("Game state saved successfully.", "Save Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Game saved successfully.", "Save Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error while saving game state: " + ex.Message, "Save Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error while saving game: " + ex.Message, "Save Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        // Load the game state from a binary file.
         private void LoadGameState()
         {
             try
@@ -331,37 +321,37 @@ namespace Zombie_Slayer
                     using (FileStream fs = new FileStream("gamestate.dat", FileMode.Open))
                     {
                         BinaryFormatter formatter = new BinaryFormatter();
-                        // Deserialize the gameState object.
                         gameState = (GameState)formatter.Deserialize(fs);
-                        // Update the game based on the loaded state.
-                        player.setHeath(gameState.PlayerHealth);
+                        player.setHealth(-player.getHealth());
+                        player.setAmmo(-player.getAmmo());
+                        player.setScore(-player.getScore());
+                        player.setHealth(gameState.PlayerHealth);
                         player.setScore(gameState.PlayerScore);
-                        player.setAmmo(gameState.PlayerAmmo-10);
+                        player.setAmmo(gameState.PlayerAmmo);
                     }
-                    MessageBox.Show("Game state loaded successfully.", "Load Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Game loaded successfully.", "Load Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("No saved game state found.", "Load Game", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No saved game found.", "Load Game", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error while loading game state: " + ex.Message, "Load Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error while loading game : " + ex.Message, "Load Game Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // Event handler for Save button click.
         private void save_Click(object sender, EventArgs e)
         {
             SaveGameState();
         }
 
-        // Event handler for Load button click.
         private void load_Click(object sender, EventArgs e)
         {
             LoadGameState();
         }
 
+        
     }
 }
