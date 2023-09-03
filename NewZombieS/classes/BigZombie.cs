@@ -27,6 +27,9 @@ namespace Zombie_Slayer
             speed = Constants.BigZombieSpeed;
             initZombie();
             demmage = Constants.BigZombieDammage;
+
+            BackColor = Color.Transparent;
+
         }
         public void initZombie(Size clientSize)
         {

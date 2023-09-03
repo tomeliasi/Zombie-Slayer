@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace Zombie_Slayer
 {
-    class Bullet
+    class Bullet:PictureBox
     {
 
         public string direction;
@@ -68,11 +68,6 @@ namespace Zombie_Slayer
                 bulletTimer = null;
                 bullet = null;
             }
-        }
-
-        public static explicit operator Bullet(Control v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

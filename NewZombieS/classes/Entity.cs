@@ -10,6 +10,7 @@ namespace Zombie_Slayer
         protected int speed;
         protected int health;
 
+
         public abstract void move(Size clientSize);
     }
 }

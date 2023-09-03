@@ -34,6 +34,7 @@ namespace Zombie_Slayer
             Size = new Size(Constants.PlayerSizeWidth, Constants.PlayerSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
             initPlayer();
+            BackColor = Color.Transparent;
         }
 
         public void initPlayer()
@@ -151,6 +152,8 @@ namespace Zombie_Slayer
             shootBullet.bulletLeft = Left + (Width / 2) - 12;
             shootBullet.bulletTop = Top + (Height / 2) - 10;
             shootBullet.makeBullet(this.FindForm());
+            this.Invalidate(shootBullet.Bounds);
+
         }
     }
 

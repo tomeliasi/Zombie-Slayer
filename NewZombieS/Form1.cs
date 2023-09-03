@@ -14,6 +14,7 @@ using System.Drawing.Imaging;
 
 namespace Zombie_Slayer
 {
+
     public partial class Form1 : Form
     {
         private Player player = new Player();
@@ -36,7 +37,9 @@ namespace Zombie_Slayer
 
         public Form1()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
+
             restartGame();
             if (!gameOver)
                 MainSound.Play();
@@ -45,17 +48,24 @@ namespace Zombie_Slayer
 
             ammo = new Ammo(player, this);
             healthKit = new HealthKit(player, this);
+
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(player.Image, player.Location);
         }
 
         private void mainTimerEvent(object sender, EventArgs e)
         {
             if (player.getHealth() > 1)
             {
-                if(player.getHealth() > 100)
+                if (player.getHealth() > 100)
                 {
                     player.setHealth(-100);
                 }
                 healthBar.Value = player.getHealth();
+                this.Invalidate(healthBar.Bounds);
 
             }
             else
@@ -68,6 +78,7 @@ namespace Zombie_Slayer
             Kills.Text = "kills: " + player.getScore();
 
             player.move(ClientSize);
+            this.Invalidate(player.Bounds);
             collisions();
 
         }
@@ -85,7 +96,7 @@ namespace Zombie_Slayer
                     {
                         this.Controls.Remove(ammoEntity);
                         ammoEntity.Dispose();
-                        
+
                         player.setAmmo(10);
                         player.setIsAmmoVisible(false);
                         ammo = null;
@@ -113,15 +124,18 @@ namespace Zombie_Slayer
                 {
                     Zombie zombieEntity = (Zombie)entity;
                     zombieEntity.move(ClientSize);
+                    this.Invalidate(zombieEntity.Bounds);
 
                     if (player.Bounds.IntersectsWith(entity.Bounds))
                         player.setHealth(-Constants.ZombieDammage);
 
                 }
-                if(entity is BigZombie)
+                if (entity is BigZombie)
                 {
                     BigZombie bigZombieEntity = (BigZombie)entity;
                     bigZombieEntity.move(ClientSize);
+                    this.Invalidate(bigZombieEntity.Bounds);
+
 
                     if (player.Bounds.IntersectsWith(entity.Bounds))
                         player.setHealth(-bigZombieEntity.getDemmage());
@@ -166,6 +180,7 @@ namespace Zombie_Slayer
                         }
                     }
                 }
+
             }
         }
 
@@ -190,7 +205,7 @@ namespace Zombie_Slayer
             int randomIndex = randNum.Next(0, zombiesList.Count);
             this.Controls.Add(zombiesList[randomIndex]);
         }
-        
+
 
         private void restartGame()
         {
@@ -203,7 +218,8 @@ namespace Zombie_Slayer
 
             player.Image = Properties.Resources.hero_up;
 
-            foreach (string tag in tagsToRemove) {
+            foreach (string tag in tagsToRemove)
+            {
                 removeObjectByTag(tag);
             }
 
@@ -223,7 +239,7 @@ namespace Zombie_Slayer
             player.Image = Properties.Resources.skull;
             player.Size = new Size(99, 100);
             GameTimer.Stop();
-
+            MainSound.Dispose();
             renderGameoverSection();
         }
 
@@ -237,10 +253,11 @@ namespace Zombie_Slayer
             gameOver.Image = Properties.Resources.game_over;
             gameOver.SizeMode = PictureBoxSizeMode.StretchImage;
             gameOver.Size = new Size(300, 300);
+            gameOver.BackColor = Color.Transparent;
             gameOver.Location = new Point((this.Width - gameOver.Width) / 2, (this.Height - gameOver.Height) / 2 - 50);
             this.Controls.Add(gameOver);
             gameOver.BringToFront();
-            
+
 
             /////////////////reset button/////////////////
 
@@ -251,9 +268,10 @@ namespace Zombie_Slayer
             reset.Size = new Size(100, 100);
             reset.Location = new Point((this.Width - gameOver.Width) / 2 + 100, (this.Height - gameOver.Height) / 2 + 250);
             this.Controls.Add(reset);
+            reset.BackColor = Color.Transparent;
             reset.BringToFront();
             reset.Click += handleClickOnReset;
-            
+
         }
 
         private void handleClickOnReset(object sender, EventArgs e)
@@ -328,6 +346,7 @@ namespace Zombie_Slayer
                         player.setHealth(gameState.PlayerHealth);
                         player.setScore(gameState.PlayerScore);
                         player.setAmmo(gameState.PlayerAmmo);
+
                     }
                     MessageBox.Show("Game loaded successfully.", "Load Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

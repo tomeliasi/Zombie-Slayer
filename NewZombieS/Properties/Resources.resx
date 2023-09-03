@@ -133,11 +133,17 @@
   <data name="game-over" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\game-over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bigZombieRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bigZombieRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hero _down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hero _down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shieldZombieLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shieldZombieLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bigZombieUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bigZombieUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="zombieGUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zombieGUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,6 +157,9 @@
   <data name="hero_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hero_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bigZombieDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bigZombieDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="zombieGRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zombieGRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -163,17 +172,26 @@
   <data name="pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bulletright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bulletright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bigZombieLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bigZombieLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ammunition" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ammunition.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pause (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pause (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bulletright" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bulletright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="shieldZombieDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shieldZombieDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bulletup" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bulletup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bulletdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bulletdown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="play-buttton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play-buttton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -183,12 +201,6 @@
   </data>
   <data name="first-aid-kit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\first-aid-kit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shieldZombieUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shieldZombieUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shieldZombieDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shieldZombieDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,22 +217,13 @@
   <data name="shieldZombieRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shieldZombieRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bulletdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bulletdown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="shieldZombieUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shieldZombieUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hero_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hero_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bigZombieDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bigZombieDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bigZombieLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bigZombieLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bigZombieRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bigZombieRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bigZombieUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bigZombieUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="background1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

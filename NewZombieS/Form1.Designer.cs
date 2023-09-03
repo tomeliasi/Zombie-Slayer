@@ -55,7 +55,7 @@ namespace Zombie_Slayer
             // GameTimer
             // 
             this.GameTimer.Enabled = true;
-            this.GameTimer.Interval = 1;
+            this.GameTimer.Interval = 10;
             this.GameTimer.Tick += new System.EventHandler(this.mainTimerEvent);
             // 
             // ammoCount
@@ -63,7 +63,7 @@ namespace Zombie_Slayer
             this.ammoCount.AutoSize = true;
             this.ammoCount.BackColor = System.Drawing.Color.Transparent;
             this.ammoCount.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-            this.ammoCount.ForeColor = System.Drawing.Color.Black;
+            this.ammoCount.ForeColor = System.Drawing.Color.White;
             this.ammoCount.Location = new System.Drawing.Point(14, 15);
             this.ammoCount.Name = "ammoCount";
             this.ammoCount.Size = new System.Drawing.Size(144, 41);
@@ -76,7 +76,7 @@ namespace Zombie_Slayer
             this.Kills.AutoSize = true;
             this.Kills.BackColor = System.Drawing.Color.Transparent;
             this.Kills.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-            this.Kills.ForeColor = System.Drawing.Color.Black;
+            this.Kills.ForeColor = System.Drawing.Color.White;
             this.Kills.Location = new System.Drawing.Point(212, 15);
             this.Kills.Name = "Kills";
             this.Kills.Size = new System.Drawing.Size(110, 41);
@@ -89,7 +89,7 @@ namespace Zombie_Slayer
             this.health.AutoSize = true;
             this.health.BackColor = System.Drawing.Color.Transparent;
             this.health.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-            this.health.ForeColor = System.Drawing.Color.Black;
+            this.health.ForeColor = System.Drawing.Color.White;
             this.health.Location = new System.Drawing.Point(347, 15);
             this.health.Name = "health";
             this.health.Size = new System.Drawing.Size(112, 41);
@@ -99,6 +99,7 @@ namespace Zombie_Slayer
             // 
             // pause
             // 
+            this.pause.BackColor = System.Drawing.Color.Transparent;
             this.pause.Image = global::Zombie_Slayer.Properties.Resources.PauseGame;
             this.pause.Location = new System.Drawing.Point(932, 12);
             this.pause.Name = "pause";
@@ -110,6 +111,7 @@ namespace Zombie_Slayer
             // 
             // save
             // 
+            this.save.BackColor = System.Drawing.Color.Transparent;
             this.save.Image = global::Zombie_Slayer.Properties.Resources.save;
             this.save.Location = new System.Drawing.Point(770, 12);
             this.save.Name = "save";
@@ -121,6 +123,7 @@ namespace Zombie_Slayer
             // 
             // load
             // 
+            this.load.BackColor = System.Drawing.Color.Transparent;
             this.load.Image = global::Zombie_Slayer.Properties.Resources.loading;
             this.load.Location = new System.Drawing.Point(855, 12);
             this.load.Name = "load";
@@ -134,7 +137,8 @@ namespace Zombie_Slayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PeachPuff;
+            this.BackColor = System.Drawing.Color.DimGray;
+            this.BackgroundImage = global::Zombie_Slayer.Properties.Resources.background1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1021, 700);
             this.Controls.Add(this.pause);

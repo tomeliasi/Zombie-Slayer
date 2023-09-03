@@ -16,6 +16,9 @@ namespace Zombie_Slayer
             Size = new Size(Constants.ZombieSizeWidth, Constants.ZombieSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
             initZombie();
+
+            BackColor = Color.Transparent;
+
         }
         public void initZombie(Size clientSize)
         {

@@ -29,6 +29,8 @@ namespace Zombie_Slayer
             mainForm.Controls.Add(this);
             BringToFront();
             playerInstance.BringToFront();
+            BackColor = Color.Transparent;
+
         }
     }
 }
