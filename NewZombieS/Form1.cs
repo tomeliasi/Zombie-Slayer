@@ -5,12 +5,6 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Media;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-
-
-
 
 namespace Zombie_Slayer
 {
@@ -199,7 +193,6 @@ namespace Zombie_Slayer
             zombiesList.Clear();
             ZombieAbstract zombie = new Zombie(player, this.ClientSize);
             ZombieAbstract zombieBig = new BigZombie(player, this.ClientSize);
-            //((shieldZombie)zombie1).shield = 1;
             zombiesList.Add(zombie);
             zombiesList.Add(zombieBig);
             int randomIndex = randNum.Next(0, zombiesList.Count);
