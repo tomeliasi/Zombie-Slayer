@@ -73,6 +73,11 @@ namespace Zombie_Slayer
                 bullet = null;
             }
         }
+
+        public static explicit operator Bullet(Control v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

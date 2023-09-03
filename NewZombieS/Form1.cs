@@ -126,8 +126,11 @@ namespace Zombie_Slayer
                 {
                     BigZombie bigZombieEntity = (BigZombie)entity;
                     bigZombieEntity.move(ClientSize);
+
+                    Console.WriteLine(bigZombieEntity.getDemmage());
                     if (player.Bounds.IntersectsWith(entity.Bounds))
                         player.setHeath(-bigZombieEntity.getDemmage());
+
                 }
                 foreach (Control entity2 in this.Controls)
                 {
@@ -148,27 +151,25 @@ namespace Zombie_Slayer
                         }
                     }
 
+
                     if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is BigZombie)
                     {
-                        BigZombie zombieEntity = (BigZombie)entity;
-
-                        if (zombieEntity.Bounds.IntersectsWith(entity2.Bounds))
+                        BigZombie bigZombieEntity = (BigZombie)entity;
+                        if (bigZombieEntity.Bounds.IntersectsWith(entity2.Bounds))
                         {
-                            zombieEntity.zombieGetDemmaged();
+                            this.Controls.Remove(entity2);
+                            ((PictureBox)entity2).Dispose();
 
-                            player.setScore(1);
-                            if(zombieEntity.getHealth() == 0 && zombieEntity.getWidth() == 100)
+                            bigZombieEntity.getDamaged(1);
+
+                            if (bigZombieEntity.getHealth() <= 0)
                             {
-                                this.Controls.Remove(entity2);
-                                ((PictureBox)entity2).Dispose();
-                                this.Controls.Remove(zombieEntity);
-                                zombieEntity.Dispose();
-                                bigZombiesList.Remove(zombieEntity);
+                                player.setScore(1);
+                                bigZombiesList.Remove(bigZombieEntity);
                                 makeZombie();
                             }
                         }
                     }
-
                 }
                
 
@@ -200,7 +201,7 @@ namespace Zombie_Slayer
 
         private void restartGame()
         {
-            string[] tagsToRemove = { "gameOver", "reset", "ammoCount", "gameOver", "healthkit", "ammo", "shieldzombie", "zombie" };
+            string[] tagsToRemove = { "gameOver", "reset", "ammoCount", "gameOver", "healthkit", "ammo", "bigZombie", "zombie" };
 
             this.Controls.Add(player);
             gameOver = false;

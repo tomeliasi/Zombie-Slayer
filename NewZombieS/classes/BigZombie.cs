@@ -7,8 +7,8 @@ namespace Zombie_Slayer
 {
     public class BigZombie : ZombieAbstract
     {
-        public Random randNum = new Random();
-        private Player playerInstance;
+        public new Random randNum = new Random();
+        private new readonly Player playerInstance;
         private int width = 150;
         private int height = 150;
 
@@ -26,14 +26,15 @@ namespace Zombie_Slayer
             Size = new Size(width, height);
             SizeMode = PictureBoxSizeMode.StretchImage;
 
+            speed = Constants.BigZombieSpeed;
             initZombie();
+            demmage = Constants.BigZombieDammage;
         }
         public void initZombie(Size clientSize)
         {
             Left = randNum.Next(0, clientSize.Width - Width);
             Top = randNum.Next(0, clientSize.Height - Height);
             Image = Properties.Resources.bigZombieDown;
-            demmage = 3;
             health = 2;
             speed = 1;
         }
@@ -69,13 +70,21 @@ namespace Zombie_Slayer
             }
         }
 
-        public void zombieGetDemmaged()
+        public void getDamaged(int damage)
         {
-            demmage--;
-            health--;
-            speed++;
-            Width -= 5;
-            Height -= 5;
+            if (Width > 100)
+            {
+                health -= damage;
+
+                speed++;
+                health--;
+                demmage--;
+                Width -= 25;
+                Height -= 25;
+                this.Dispose();
+                
+            }
         }
     }
-}
+    }
+

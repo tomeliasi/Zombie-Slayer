@@ -13,7 +13,7 @@ namespace Zombie_Slayer
         public Zombie(Player player, Size clientSize)
         {
             playerInstance = player;
-
+            speed = Constants.ZombieSpeed;
             Tag = "zombie";
             Size = new Size(Constants.ZombieSizeWidth, Constants.ZombieSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
@@ -25,13 +25,12 @@ namespace Zombie_Slayer
             Top = randNum.Next(0, clientSize.Height - Height);
             Image = Properties.Resources.zombieGDown;
             health = Constants.ZombieInitialHealth;
-            speed = Constants.ZombieSpeed;
+            //speed = Constants.ZombieSpeed;
         }
 
 
         public override void move(Size ClientSize)
         {
-            Console.WriteLine(playerInstance);
             if (playerInstance != null)
             {
                 if (Left > playerInstance.Left)
