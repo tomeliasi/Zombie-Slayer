@@ -153,6 +153,7 @@ namespace Zombie_Slayer
                         }
                     }
 
+
                     if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is BigZombie)
                     {
                         BigZombie bigZombieEntity = (BigZombie)entity;
@@ -206,6 +207,7 @@ namespace Zombie_Slayer
 
             this.Controls.Add(player);
             gameOver = false;
+            isPause = true;
 
             GameTimer.Start();
 
@@ -294,6 +296,8 @@ namespace Zombie_Slayer
                 MainSound.Stop();
                 pause.Image = Properties.Resources.PlayGame;
                 isPause = !isPause;
+                load.Visible = true;
+                save.Visible = true;
             }
             else
             {
@@ -301,6 +305,8 @@ namespace Zombie_Slayer
                 GameTimer.Start();
                 pause.Image = Properties.Resources.PauseGame;
                 isPause = !isPause;
+                load.Visible = false;
+                save.Visible = false;
             }
         }
 
@@ -339,6 +345,8 @@ namespace Zombie_Slayer
                         player.setHealth(gameState.PlayerHealth);
                         player.setScore(gameState.PlayerScore);
                         player.setAmmo(gameState.PlayerAmmo);
+                        player.setIsAmmoVisible(false);
+                        player.setIsHealthkitVisable(false);
 
                     }
                     MessageBox.Show("Game loaded successfully.", "Load Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
