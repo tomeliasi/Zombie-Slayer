@@ -12,7 +12,7 @@ namespace Zombie_Slayer
         private int width = 150;
         private int height = 150;
 
-        public int getDemmage() {  return demmage; }
+        public int getDemmage() { return demmage; }
         public int getSpeed() { return speed; }
         public int getHealth() { return health; }
         public int getWidth() { return width; }
@@ -72,19 +72,15 @@ namespace Zombie_Slayer
 
         public void getDamaged(int damage)
         {
-            if (Width > 100)
-            {
-                health -= damage;
+            health -= damage;
 
-                speed++;
-                health--;
-                demmage--;
-                Width -= 25;
-                Height -= 25;
-                this.Dispose();
-                
-            }
+            speed+=2;
+            health--;
+            demmage--;
+
+            Width -= 25;
+            Height -= 25;
         }
     }
-    }
+}
 

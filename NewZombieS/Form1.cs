@@ -127,7 +127,6 @@ namespace Zombie_Slayer
                     BigZombie bigZombieEntity = (BigZombie)entity;
                     bigZombieEntity.move(ClientSize);
 
-                    Console.WriteLine(bigZombieEntity.getDemmage());
                     if (player.Bounds.IntersectsWith(entity.Bounds))
                         player.setHeath(-bigZombieEntity.getDemmage());
 
@@ -147,10 +146,8 @@ namespace Zombie_Slayer
                             zombieEntity.Dispose();
                             zombiesList.Remove(zombieEntity);
                             makeZombie();
-                            //GetRandomZombieFromList(zombiesList);
                         }
                     }
-
 
                     if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is BigZombie)
                     {
@@ -162,10 +159,12 @@ namespace Zombie_Slayer
 
                             bigZombieEntity.getDamaged(1);
 
-                            if (bigZombieEntity.getHealth() <= 0)
+
+                            if (bigZombieEntity.Width < 100)
                             {
                                 player.setScore(1);
                                 bigZombiesList.Remove(bigZombieEntity);
+                                bigZombieEntity.Dispose();
                                 makeZombie();
                             }
                         }

@@ -55,7 +55,7 @@ namespace Zombie_Slayer
             // GameTimer
             // 
             this.GameTimer.Enabled = true;
-            this.GameTimer.Interval = 20;
+            this.GameTimer.Interval = 1;
             this.GameTimer.Tick += new System.EventHandler(this.mainTimerEvent);
             // 
             // ammoCount

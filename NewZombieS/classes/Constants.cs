@@ -48,13 +48,13 @@ namespace Zombie_Slayer
         public const int ZombieShield = 1;
 
         //big zombie
-        public static int BigZombieSizeWidth = 150;
-        public static int BigZombieSizeHeight = 150;
+        public const int BigZombieSizeWidth = 150;
+        public const int BigZombieSizeHeight = 150;
 
-        public static int BigZombieHealth = 2;
+        public const int BigZombieHealth = 2;
 
-        public static int BigZombieSpeed = 1;
-        public static int BigZombieDammage = 3;
+        public const int BigZombieSpeed = 1;
+        public const int BigZombieDammage = 3;
 
 
         ///////////////////////////Bullet///////////////////////////
