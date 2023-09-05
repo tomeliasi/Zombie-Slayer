@@ -118,18 +118,112 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+<<<<<<< Updated upstream:Zombie Slayer/Properties/Resources.resx
   <data name="bulletdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bulletdown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+=======
+  <data name="zombieGLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zombieGLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hero_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hero_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="zombieGDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zombieGDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayGame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bigZombieRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bigZombieRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="game-over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\game-over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hero _down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hero _down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="shieldZombieLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shieldZombieLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bigZombieUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bigZombieUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zombieGUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zombieGUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hero_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hero_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+>>>>>>> Stashed changes:NewZombieS/Properties/Resources.resx
+  </data>
+  <data name="hero_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hero_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+<<<<<<< Updated upstream:Zombie Slayer/Properties/Resources.resx
+  <data name="hero _down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hero _down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+=======
+  <data name="bigZombieDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bigZombieDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zombieGRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zombieGRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PauseGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PauseGame.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reset" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bulletright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bulletright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bigZombieLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bigZombieLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="background1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ammunition" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ammunition.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pause (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pause (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shieldZombieDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shieldZombieDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+>>>>>>> Stashed changes:NewZombieS/Properties/Resources.resx
+  </data>
   <data name="bulletup" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bulletup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+<<<<<<< Updated upstream:Zombie Slayer/Properties/Resources.resx
+=======
+  <data name="bulletdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bulletdown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="play-buttton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play-buttton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reset1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reset1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="first-aid-kit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\first-aid-kit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="skull" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\skull.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pausegamepic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pausegamepic.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+>>>>>>> Stashed changes:NewZombieS/Properties/Resources.resx
   <data name="bulletleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bulletleft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -163,6 +257,7 @@
   <data name="hero_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hero_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+<<<<<<< Updated upstream:Zombie Slayer/Properties/Resources.resx
   <data name="hero_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hero_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -171,5 +266,18 @@
   </data>
   <data name="first-aid-kit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\first-aid-kit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+=======
+  <data name="dragonRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dragonRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dragonLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dragonLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dragonUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dragonUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dragonDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dragonDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+>>>>>>> Stashed changes:NewZombieS/Properties/Resources.resx
   </data>
 </root>

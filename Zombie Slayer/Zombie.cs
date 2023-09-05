@@ -1,6 +1,10 @@
 ﻿namespace Zombie_Slayer
 {
+<<<<<<< Updated upstream:Zombie Slayer/Zombie.cs
     public class Zombie : Entity
+=======
+    public class Zombie : MonsterAbstract
+>>>>>>> Stashed changes:NewZombieS/classes/Zombie.cs
     {
         private Player playerInstance;
         private Random randNum = new Random();
