@@ -81,105 +81,117 @@ namespace Zombie_Slayer
 
         private void collisions()
         {
-
             foreach (Control entity in this.Controls)
-            { 
-                if (entity is Ammo)
+            {
+                switch (entity)
                 {
-                    Ammo ammoEntity = (Ammo)entity;
+                    case Ammo ammoEntity when player.Bounds.IntersectsWith(ammoEntity.Bounds):
+                        HandleAmmoCollision(ammoEntity);
+                        break;
 
-                    if (player.Bounds.IntersectsWith(ammoEntity.Bounds))
-                    {
-                        this.Controls.Remove(ammoEntity);
-                        ammoEntity.Dispose();
+                    case HealthKit healthKitEntity when player.Bounds.IntersectsWith(healthKitEntity.Bounds):
+                        HandleHealthKitCollision(healthKitEntity);
+                        break;
 
-                        player.setAmmo(10);
-                        player.setIsAmmoVisible(false);
-                        ammo = null;
-                        ammo = new Ammo(player, this);
-                    }
-                }
-                if (entity is HealthKit)
-                {
-                    HealthKit halthKitEntity = (HealthKit)entity;
-                    if (player.Bounds.IntersectsWith(halthKitEntity.Bounds))
-                    {
-                        this.Controls.Remove(halthKitEntity);
-                        halthKitEntity.Dispose();
-                        if (player.getHealth() <= 70)
-                            player.setHealth(30);
-                        else
-                            player.setMaxHealth();
+                    case Zombie zombieEntity:
+                        HandleZombieCollision(zombieEntity);
+                        break;
 
-                        player.setIsHealthkitVisable(false);
-                        healthKit = null;
-                        healthKit = new HealthKit(player, this);
-                    }
-                }
-                if (entity is Zombie)
-                {
-                    Zombie zombieEntity = (Zombie)entity;
-                    zombieEntity.move(ClientSize);
-                    this.Invalidate(zombieEntity.Bounds);
+                    case BigZombie bigZombieEntity:
+                        HandleBigZombieCollision(bigZombieEntity);
+                        break;
 
-                    if (player.Bounds.IntersectsWith(entity.Bounds))
-                        player.setHealth(-Constants.ZombieDammage);
-
-                }
-                if (entity is BigZombie)
-                {
-                    BigZombie bigZombieEntity = (BigZombie)entity;
-                    bigZombieEntity.move(ClientSize);
-                    this.Invalidate(bigZombieEntity.Bounds);
-
-
-                    if (player.Bounds.IntersectsWith(entity.Bounds))
-                        player.setHealth(-bigZombieEntity.getDemmage());
-
-                }
-                foreach (Control entity2 in this.Controls)
-                {
-                    if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is Zombie)
-                    {
-                        Zombie zombieEntity = (Zombie)entity;
-
-                        if (zombieEntity.Bounds.IntersectsWith(entity2.Bounds))
+                    case PictureBox bulletEntity when (string)bulletEntity.Tag == "bullet":
+                        foreach (Control enemyEntity in this.Controls)
                         {
-                            player.setScore(1);
-                            this.Controls.Remove(entity2);
-                            ((PictureBox)entity2).Dispose();
-                            this.Controls.Remove(zombieEntity);
-                            zombieEntity.Dispose();
-                            zombiesList.Remove(zombieEntity);
-                            makeZombie();
-                        }
-                    }
-
-
-                    if (entity2 is PictureBox && (string)entity2.Tag == "bullet" && entity is BigZombie)
-                    {
-                        BigZombie bigZombieEntity = (BigZombie)entity;
-                        if (bigZombieEntity.Bounds.IntersectsWith(entity2.Bounds))
-                        {
-                            this.Controls.Remove(entity2);
-                            ((PictureBox)entity2).Dispose();
-
-                            bigZombieEntity.getDamaged(1);
-
-
-                            if (bigZombieEntity.Width < 100)
+                            switch (enemyEntity)
                             {
-                                player.setScore(1);
-                                bigZombiesList.Remove(bigZombieEntity);
-                                bigZombieEntity.Dispose();
-                                makeZombie();
+                                case Zombie zombieEnemy when zombieEnemy.Bounds.IntersectsWith(bulletEntity.Bounds):
+                                    HandleZombieBulletCollision(zombieEnemy, bulletEntity);
+                                    break;
+
+                                case BigZombie bigZombieEnemy when bigZombieEnemy.Bounds.IntersectsWith(bulletEntity.Bounds):
+                                    HandleBigZombieBulletCollision(bigZombieEnemy, bulletEntity);
+                                    break;
                             }
                         }
-                    }
+                        break;
                 }
-
             }
         }
+
+        private void HandleAmmoCollision(Ammo ammoEntity)
+        {
+            this.Controls.Remove(ammoEntity);
+            ammoEntity.Dispose();
+
+            player.setAmmo(10);
+            player.setIsAmmoVisible(false);
+            ammo = null;
+            ammo = new Ammo(player, this);
+        }
+
+        private void HandleHealthKitCollision(HealthKit healthKitEntity)
+        {
+            this.Controls.Remove(healthKitEntity);
+            healthKitEntity.Dispose();
+
+            if (player.getHealth() <= 70)
+                player.setHealth(30);
+            else
+                player.setMaxHealth();
+
+            player.setIsHealthkitVisable(false);
+            healthKit = null;
+            healthKit = new HealthKit(player, this);
+        }
+
+        private void HandleZombieCollision(Zombie zombieEntity)
+        {
+            zombieEntity.move(ClientSize);
+            this.Invalidate(zombieEntity.Bounds);
+
+            if (player.Bounds.IntersectsWith(zombieEntity.Bounds))
+                player.setHealth(-Constants.ZombieDammage);
+        }
+
+        private void HandleBigZombieCollision(BigZombie bigZombieEntity)
+        {
+            bigZombieEntity.move(ClientSize);
+            this.Invalidate(bigZombieEntity.Bounds);
+
+            if (player.Bounds.IntersectsWith(bigZombieEntity.Bounds))
+                player.setHealth(-bigZombieEntity.getDemmage());
+        }
+
+        private void HandleZombieBulletCollision(Zombie zombieEntity, PictureBox bulletEntity)
+        {
+            player.setScore(1);
+            this.Controls.Remove(bulletEntity);
+            bulletEntity.Dispose();
+            this.Controls.Remove(zombieEntity);
+            zombieEntity.Dispose();
+            zombiesList.Remove(zombieEntity);
+            makeZombie();
+        }
+
+        private void HandleBigZombieBulletCollision(BigZombie bigZombieEntity, PictureBox bulletEntity)
+        {
+            this.Controls.Remove(bulletEntity);
+            bulletEntity.Dispose();
+
+            bigZombieEntity.getDamaged(1);
+
+            if (bigZombieEntity.Width < 100)
+            {
+                player.setScore(1);
+                bigZombiesList.Remove(bigZombieEntity);
+                bigZombieEntity.Dispose();
+                makeZombie();
+            }
+        }
+
+
 
         private void keyIsDown(object sender, KeyEventArgs e)
         {
