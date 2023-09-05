@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollisionHandler.cs" />
     <Compile Include="Entities\Ammo.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -58,7 +59,7 @@
     <Compile Include="Entities\Bullet.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Entities\Constants.cs" />
+    <Compile Include="Variables\Constants.cs" />
     <Compile Include="Entities\Entity.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -74,6 +75,7 @@
     <Compile Include="Entities\Player.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Variables\Globals.cs" />
     <Compile Include="GsmeState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Entities\ZombieAbstract.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

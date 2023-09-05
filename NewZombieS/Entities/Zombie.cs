@@ -7,23 +7,17 @@ namespace Zombie_Slayer
     public class Zombie : ZombieAbstract
     {
         public Random randNum = new Random();
-        private Player playerInstance;
 
-        public Zombie(Player player, Size clientSize) : this(player, clientSize, Point.Empty)
+        public Zombie(Point initialPosition)
         {
-        }
-
-        public Zombie(Player player, Size clientSize, Point initialPosition)
-        {
-            playerInstance = player;
             speed = Constants.ZombieSpeed;
             Tag = "zombie";
             Size = new Size(Constants.ZombieSizeWidth, Constants.ZombieSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
-            InitZombie(clientSize, initialPosition);
+            InitZombie(initialPosition);
         }
 
-        private void InitZombie(Size clientSize, Point initialPosition)
+        private void InitZombie(Point initialPosition)
         {
             if (initialPosition == Point.Empty)
             {

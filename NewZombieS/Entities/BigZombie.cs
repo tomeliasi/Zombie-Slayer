@@ -6,20 +6,13 @@ namespace Zombie_Slayer
 {
     public class BigZombie : ZombieAbstract
     {
-        private readonly Player playerInstance;
-
         public int getDemmage() { return demmage; }
         public int getSpeed() { return speed; }
         public int getHealth() { return health; }
         public int getWidth() { return Width; } // Use the inherited Width property
 
-        public BigZombie(Player player, Size clientSize) : this(player, clientSize, Point.Empty)
+        public BigZombie(Point initialPosition)
         {
-        }
-
-        public BigZombie(Player player, Size clientSize, Point initialPosition)
-        {
-            playerInstance = player;
             Tag = "bigZombie";
             Size = new Size(Constants.BigZombieSizeWidth, Constants.BigZombieSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;

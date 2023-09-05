@@ -6,9 +6,9 @@ namespace Zombie_Slayer
     abstract public class ZombieAbstract : Entity
     {
 
-        protected Player playerInstance;
+        protected Player playerInstance = Globals.player;
         protected Random randNum = new Random();
-        protected Size clientSize;
+        protected Size clientSize = Globals.clientSize;
         protected int demmage;
 
 
