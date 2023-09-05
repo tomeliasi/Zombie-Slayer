@@ -54,7 +54,7 @@ namespace Zombie_Slayer
             score = Constants.PlayerInitialScore;
         }
 
-        public override void move(Size clientSize)
+        public override void move()
         {
             if (left && Left > 4)
                 Left -= speed;
@@ -149,7 +149,7 @@ namespace Zombie_Slayer
             shootBullet.direction = direction;
             shootBullet.bulletLeft = Left + (Width / 2) - 12;
             shootBullet.bulletTop = Top + (Height / 2) - 10;
-            shootBullet.makeBullet(this.FindForm());
+            shootBullet.makeBullet();
             this.Invalidate(shootBullet.Bounds);
 
         }

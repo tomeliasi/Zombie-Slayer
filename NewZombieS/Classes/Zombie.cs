@@ -34,7 +34,7 @@ namespace Zombie_Slayer
             BackColor = Color.Transparent;
         }
 
-        public override void move(Size ClientSize)
+        public override void move()
         {
             if (playerInstance != null)
             {

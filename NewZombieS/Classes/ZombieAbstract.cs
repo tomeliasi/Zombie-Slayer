@@ -8,7 +8,6 @@ namespace Zombie_Slayer
 
         protected Player playerInstance = Globals.player;
         protected Random randNum = new Random();
-        protected Size clientSize = Globals.clientSize;
         protected int demmage;
 
 

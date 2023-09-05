@@ -10,7 +10,7 @@ namespace Zombie_Slayer
         protected int speed;
         protected int health;
 
-
-        public abstract void move(Size clientSize);
+        protected Size clientSize = Globals.clientSize;
+        public abstract void move();
     }
 }

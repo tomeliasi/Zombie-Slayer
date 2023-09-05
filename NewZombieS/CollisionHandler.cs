@@ -73,7 +73,7 @@ namespace Zombie_Slayer
             player.setIsAmmoVisible(false);
 
             Globals.ammo = null;
-            Globals.ammo = new Ammo(player, form);
+            Globals.ammo = new Ammo();
         }
 
         private void HandleHealthKitCollision(HealthKit healthKitEntity)
@@ -89,12 +89,12 @@ namespace Zombie_Slayer
             player.setIsHealthkitVisable(false);
 
             Globals.healthKit = null;
-            Globals.healthKit = new HealthKit(player, form);
+            Globals.healthKit = new HealthKit();
         }
 
         private void HandleZombieCollision(Zombie zombieEntity)
         {
-            zombieEntity.move(form.ClientSize);
+            zombieEntity.move();
             form.Invalidate(zombieEntity.Bounds);
 
             if (player.Bounds.IntersectsWith(zombieEntity.Bounds))
@@ -103,7 +103,7 @@ namespace Zombie_Slayer
 
         private void HandleBigZombieCollision(BigZombie bigZombieEntity)
         {
-            bigZombieEntity.move(form.ClientSize);
+            bigZombieEntity.move();
             form.Invalidate(bigZombieEntity.Bounds);
 
             if (player.Bounds.IntersectsWith(bigZombieEntity.Bounds))
@@ -118,7 +118,7 @@ namespace Zombie_Slayer
             form.Controls.Remove(zombieEntity);
             zombieEntity.Dispose();
             zombiesList.Remove(zombieEntity);
-            Utilities.MakeZombie(player, form, zombiesList, bigZombiesList);
+            Utilities.MakeZombie();
         }
 
         private void HandleBigZombieBulletCollision(BigZombie bigZombieEntity, PictureBox bulletEntity)
@@ -133,7 +133,7 @@ namespace Zombie_Slayer
                 player.setScore(1);
                 bigZombiesList.Remove(bigZombieEntity);
                 bigZombieEntity.Dispose();
-                Utilities.MakeZombie(player, form, zombiesList, bigZombiesList);
+                Utilities.MakeZombie();
             }
         }
     }

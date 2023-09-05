@@ -6,7 +6,6 @@ namespace Zombie_Slayer
 {
     class Bullet:PictureBox
     {
-
         public string direction;
         public int bulletLeft;
         public int bulletTop;
@@ -14,7 +13,7 @@ namespace Zombie_Slayer
         private PictureBox bullet = new PictureBox();
         private System.Windows.Forms.Timer bulletTimer = new System.Windows.Forms.Timer();
 
-        public void makeBullet(Form form)
+        public void makeBullet()
         {
             bullet.BackColor = Color.Transparent;
             bullet.Image = Properties.Resources.bulletup;
@@ -25,7 +24,7 @@ namespace Zombie_Slayer
             bullet.Top = bulletTop;
             bullet.BringToFront();
 
-            form.Controls.Add(bullet);
+            Globals.form.Controls.Add(bullet);
 
             bulletTimer.Interval = speed;
             bulletTimer.Tick += new EventHandler(BulletTimerEvent);

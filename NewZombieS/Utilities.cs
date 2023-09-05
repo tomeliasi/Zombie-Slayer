@@ -7,12 +7,12 @@ namespace Zombie_Slayer
 {
     public static class Utilities
     {
-        public static void MakeZombie(Player player, Form form, List<ZombieAbstract> zombiesList, List<BigZombie> bigZombiesList)
+        public static void MakeZombie()
         {
-            zombiesList.Clear();
+            Globals.zombiesList.Clear();
 
-            int screenWidth = form.ClientSize.Width;
-            int screenHeight = form.ClientSize.Height;
+            int screenWidth = Globals.clientSize.Width;
+            int screenHeight = Globals.clientSize.Height;
 
             Random randNum = new Random();
             int spawnArea = randNum.Next(1, 5);
@@ -42,11 +42,23 @@ namespace Zombie_Slayer
             ZombieAbstract zombie = new Zombie(new Point(x, y));
             ZombieAbstract zombieBig = new BigZombie(new Point(x, y));
 
-            zombiesList.Add(zombie);
-            zombiesList.Add(zombieBig);
+            Globals.zombiesList.Add(zombie);
+            Globals.zombiesList.Add(zombieBig);
 
-            int randomIndex = randNum.Next(0, zombiesList.Count);
-            form.Controls.Add(zombiesList[randomIndex]);
+            int randomIndex = randNum.Next(0, Globals.zombiesList.Count);
+            Globals.addElementToForm.Invoke(Globals.zombiesList[randomIndex]);
+        }
+
+        public static void removeObjectByTag(string tag)
+        {
+            foreach (Control control in Globals.form.Controls)
+            {
+                if (control is PictureBox && ((string)control.Tag == tag))
+                {
+                    Globals.removeElementToForm.Invoke(control);
+                    control.Dispose();
+                }
+            }
         }
     }
 }

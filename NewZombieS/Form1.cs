@@ -15,6 +15,7 @@ namespace Zombie_Slayer
         private SoundPlayer gameOverSound;
         private SoundPlayer MainSound;
         private bool isPause = false;
+        private GameOver gameOverScreen;
 
         private CollisionHandler collisionHandler;
         public Form1()
@@ -28,16 +29,20 @@ namespace Zombie_Slayer
         private void InitializeGame()
 
         {
+            Globals.form = this;
+            Globals.clientSize = ClientSize;
+
             Globals.player = new Player();
             Globals.zombiesList = new List<ZombieAbstract>();
             Globals.bigZombiesList = new List<BigZombie>();
 
             Globals.player = new Player();
-            Globals.ammo = new Ammo(Globals.player, this);
-            Globals.healthKit = new HealthKit(Globals.player, this);
+            Globals.ammo = new Ammo();
+            Globals.healthKit = new HealthKit();
 
-            Globals.clientSize = ClientSize;
-            // Load sounds
+            Globals.addElementToForm = addElementToForm;
+            Globals.removeElementToForm = removeElementToForm;
+
             gameOverSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "GameOverSound.wav"));
             MainSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "MainSound.wav"));
             collisionHandler = new CollisionHandler(Globals.player, this, Globals.zombiesList, Globals.bigZombiesList);
@@ -71,7 +76,7 @@ namespace Zombie_Slayer
             ammoCount.Text = "Ammo: " + Globals.player.getAmmo();
             Kills.Text = "kills: " + Globals.player.getScore();
 
-            Globals.player.move(ClientSize);
+            Globals.player.move();
             this.Invalidate(Globals.player.Bounds);
             collisionHandler.HandleCollisions();
 
@@ -102,13 +107,13 @@ namespace Zombie_Slayer
 
             foreach (string tag in tagsToRemove)
             {
-                removeObjectByTag(tag);
+                Utilities.removeObjectByTag(tag);
             }
 
             Globals.zombiesList.Clear();
 
             for (int i = 0; i < 2; i++)
-                Utilities.MakeZombie(Globals.player, this, Globals.zombiesList, Globals.bigZombiesList);
+                Utilities.MakeZombie();
 
             Globals.player.initPlayer();
             MainSound.Play();
@@ -122,56 +127,8 @@ namespace Zombie_Slayer
             Globals.player.Size = new Size(99, 100);
             GameTimer.Stop();
             MainSound.Dispose();
-            renderGameoverSection();
-        }
-
-        private void renderGameoverSection()
-        {
-
-            /////////////////game over image button/////////////////
-
-            PictureBox gameOver = new PictureBox();
-            gameOver.Tag = "gameOver";
-            gameOver.Image = Properties.Resources.game_over;
-            gameOver.SizeMode = PictureBoxSizeMode.StretchImage;
-            gameOver.Size = new Size(300, 300);
-            gameOver.BackColor = Color.Transparent;
-            gameOver.Location = new Point((this.Width - gameOver.Width) / 2, (this.Height - gameOver.Height) / 2 - 50);
-            this.Controls.Add(gameOver);
-            gameOver.BringToFront();
-
-
-            /////////////////reset button/////////////////
-
-            PictureBox reset = new PictureBox();
-            reset.Tag = "reset";
-            reset.Image = Properties.Resources.reset;
-            reset.SizeMode = PictureBoxSizeMode.StretchImage;
-            reset.Size = new Size(100, 100);
-            reset.Location = new Point((this.Width - gameOver.Width) / 2 + 100, (this.Height - gameOver.Height) / 2 + 250);
-            this.Controls.Add(reset);
-            reset.BackColor = Color.Transparent;
-            reset.BringToFront();
-            reset.Click += handleClickOnReset;
-
-        }
-
-        private void handleClickOnReset(object sender, EventArgs e)
-        {
-            restartGame();
-        }
-
-
-        private void removeObjectByTag(string tag)
-        {
-            foreach (Control control in this.Controls)
-            {
-                if (control is PictureBox && ((string)control.Tag == tag))
-                {
-                    this.Controls.Remove(control);
-                    control.Dispose();
-                }
-            }
+            gameOverScreen = new GameOver(restartGame);
+            gameOverScreen.makeGameOver();
         }
 
 
@@ -259,5 +216,14 @@ namespace Zombie_Slayer
             LoadGameState();
         }
 
+        public void addElementToForm(Control element)
+        {
+            this.Controls.Add(element);
+        }
+
+        public void removeElementToForm(Control element)
+        {
+            this.Controls.Remove(element);
+        }
     }
 }
