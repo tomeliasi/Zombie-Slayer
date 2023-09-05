@@ -26,6 +26,11 @@ namespace Zombie_Slayer
 
         public Player()
         {
+            initializePlayer();
+        }
+
+        public void initializePlayer()
+        {
             Tag = "player";
             Size = new Size(Constants.PlayerSizeWidth, Constants.PlayerSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
@@ -48,6 +53,7 @@ namespace Zombie_Slayer
             ammo = Constants.PlayerInitialAmmo;
             score = Constants.PlayerInitialScore;
         }
+
         public override void move(Size clientSize)
         {
             if (left && Left > 4)
@@ -65,72 +71,68 @@ namespace Zombie_Slayer
 
         public void playerKeyIsDown(KeyEventArgs e, bool gameOver)
         {
-            if (gameOver == false)
+            if (!gameOver)
             {
-                if (e.KeyCode == Keys.Left)
+                switch (e.KeyCode)
                 {
-                    left = true;
-                    facing = "left";
-                    Image = Properties.Resources.hero_left;
-                }
+                    case Keys.Left:
+                        left = true;
+                        facing = "left";
+                        Image = Properties.Resources.hero_left;
+                        break;
 
-                if (e.KeyCode == Keys.Right)
-                {
-                    right = true;
-                    facing = "right";
-                    Image = Properties.Resources.hero_right;
+                    case Keys.Right:
+                        right = true;
+                        facing = "right";
+                        Image = Properties.Resources.hero_right;
+                        break;
 
-                }
+                    case Keys.Up:
+                        up = true;
+                        facing = "up";
+                        Image = Properties.Resources.hero_up;
+                        break;
 
-                if (e.KeyCode == Keys.Up)
-                {
-                    up = true;
-                    facing = "up";
-                    Image = Properties.Resources.hero_up;
-
-                }
-
-                if (e.KeyCode == Keys.Down)
-                {
-                    down = true;
-                    facing = "down";
-                    Image = Properties.Resources.hero__down;
-
+                    case Keys.Down:
+                        down = true;
+                        facing = "down";
+                        Image = Properties.Resources.hero__down;
+                        break;
                 }
             }
         }
 
         public void playerKeyIsUp(KeyEventArgs e, Ammo newAmmo, HealthKit healthKit)
         {
-            if (e.KeyCode == Keys.Left)
-                left = false;
-
-            if (e.KeyCode == Keys.Right)
-                right = false;
-
-            if (e.KeyCode == Keys.Up)
-                up = false;
-
-            if (e.KeyCode == Keys.Down)
-                down = false;
-
-            if (e.KeyCode == Keys.Space && ammo > 0)
+            switch (e.KeyCode)
             {
-                Shoot();
+                case Keys.Left:
+                    left = false;
+                    break;
+
+                case Keys.Right:
+                    right = false;
+                    break;
+
+                case Keys.Up:
+                    up = false;
+                    break;
+
+                case Keys.Down:
+                    down = false;
+                    break;
+
+                case Keys.Space:
+                    if (ammo > 0)
+                        Shoot();
+                    break;
             }
 
-            if (ammo < 1 && !this.isAmmoVisible)
-            {
+            if (ammo < 1 && !isAmmoVisible)
                 newAmmo.MakeAmmo();
-            }
-
 
             if (health < 30 && !isHealthkitVisable)
-            {
                 healthKit.makeHealthKit();
-            }
-
-
         }
         public void Shoot()
         {

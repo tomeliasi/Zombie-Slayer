@@ -8,7 +8,6 @@ using System.Media;
 
 namespace Zombie_Slayer
 {
-
     public partial class Form1 : Form
     {
         private Player player = new Player();
@@ -16,33 +15,36 @@ namespace Zombie_Slayer
         private HealthKit healthKit;
         private List<ZombieAbstract> zombiesList = new List<ZombieAbstract>();
         private List<BigZombie> bigZombiesList = new List<BigZombie>();
-
-        static public bool isBackToFront = false;
-        public bool isGameOver = false;
-        private object pts;
-        private bool isPause = true;
         private GameState gameState = new GameState();
+        private Random randNum = new Random();
+        private bool gameOver;
+        private SoundPlayer gameOverSound;
+        private SoundPlayer MainSound;
+        private bool isPause = false;
 
-
-        bool gameOver;
-        Random randNum = new Random();
-        SoundPlayer gameOverSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "GameOverSound.wav"));
-        SoundPlayer MainSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "MainSound.wav"));
+        // Enums for object tags
+        private enum ObjectTags { Player, Ammo, HealthKit, Zombie, BigZombie }
 
         public Form1()
         {
             InitializeComponent();
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
 
-            restartGame();
-            if (!gameOver)
-                MainSound.Play();
-            else
-                MainSound.Stop();
+            InitializeGame();
+        }
 
+        private void InitializeGame()
+        {
+            // Initialize player, ammo, healthKit, and other game elements
+            player = new Player();
             ammo = new Ammo(player, this);
             healthKit = new HealthKit(player, this);
 
+            // Load sounds
+            gameOverSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "GameOverSound.wav"));
+            MainSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "MainSound.wav"));
+
+            restartGame();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -192,13 +194,44 @@ namespace Zombie_Slayer
         private void makeZombie()
         {
             zombiesList.Clear();
-            ZombieAbstract zombie = new Zombie(player, this.ClientSize);
-            ZombieAbstract zombieBig = new BigZombie(player, this.ClientSize);
+
+            int screenWidth = this.ClientSize.Width;
+            int screenHeight = this.ClientSize.Height;
+
+            int spawnArea = randNum.Next(1, 5); 
+
+            int x = 0, y = 0;
+
+            switch (spawnArea)
+            {
+                case 1: // Top-left corner
+                    x = randNum.Next(0, screenWidth / 2);
+                    y = randNum.Next(0, screenHeight / 2);
+                    break;
+                case 2: // Top-right corner
+                    x = randNum.Next(screenWidth / 2, screenWidth);
+                    y = randNum.Next(0, screenHeight / 2);
+                    break;
+                case 3: // Bottom-left corner
+                    x = randNum.Next(0, screenWidth / 2);
+                    y = randNum.Next(screenHeight / 2, screenHeight);
+                    break;
+                case 4: // Bottom-right corner
+                    x = randNum.Next(screenWidth / 2, screenWidth);
+                    y = randNum.Next(screenHeight / 2, screenHeight);
+                    break;
+            }
+
+            ZombieAbstract zombie = new Zombie(player, this.ClientSize, new Point(x, y));
+            ZombieAbstract zombieBig = new BigZombie(player, this.ClientSize, new Point(x, y));
+
             zombiesList.Add(zombie);
             zombiesList.Add(zombieBig);
+
             int randomIndex = randNum.Next(0, zombiesList.Count);
             this.Controls.Add(zombiesList[randomIndex]);
         }
+
 
 
         private void restartGame()

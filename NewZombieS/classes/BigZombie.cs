@@ -1,45 +1,46 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+
 namespace Zombie_Slayer
 {
     public class BigZombie : ZombieAbstract
     {
-        public new Random randNum = new Random();
-        private new readonly Player playerInstance;
-        private int width = 150;
-        private int height = 150;
+        private readonly Player playerInstance;
 
         public int getDemmage() { return demmage; }
         public int getSpeed() { return speed; }
         public int getHealth() { return health; }
-        public int getWidth() { return width; }
+        public int getWidth() { return Width; } // Use the inherited Width property
 
-        public BigZombie(Player player, Size clientSize)
+        public BigZombie(Player player, Size clientSize) : this(player, clientSize, Point.Empty)
+        {
+        }
+
+        public BigZombie(Player player, Size clientSize, Point initialPosition)
         {
             playerInstance = player;
-
             Tag = "bigZombie";
-
-            Size = new Size(width, height);
+            Size = new Size(Constants.BigZombieSizeWidth, Constants.BigZombieSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
 
-            speed = Constants.BigZombieSpeed;
-            initZombie();
-            demmage = Constants.BigZombieDammage;
+            if (initialPosition == Point.Empty)
+            {
+                Left = randNum.Next(0, clientSize.Width - Width);
+                Top = randNum.Next(0, clientSize.Height - Height);
+            }
+            else
+            {
+                Left = initialPosition.X;
+                Top = initialPosition.Y;
+            }
 
-            BackColor = Color.Transparent;
-
-        }
-        public void initZombie(Size clientSize)
-        {
-            Left = randNum.Next(0, clientSize.Width - Width);
-            Top = randNum.Next(0, clientSize.Height - Height);
             Image = Properties.Resources.bigZombieDown;
-            health = 2;
-            speed = 1;
+            health = Constants.BigZombieHealth;
+            speed = Constants.BigZombieSpeed;
+            demmage = Constants.BigZombieDammage;
+            BackColor = Color.Transparent;
         }
-
 
         public override void move(Size ClientSize)
         {
@@ -74,8 +75,7 @@ namespace Zombie_Slayer
         public void getDamaged(int damage)
         {
             health -= damage;
-
-            speed+=2;
+            speed += 2;
             health--;
             demmage--;
 
@@ -84,4 +84,3 @@ namespace Zombie_Slayer
         }
     }
 }
-

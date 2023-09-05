@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+
 namespace Zombie_Slayer
 {
     public class Zombie : ZombieAbstract
@@ -8,27 +9,36 @@ namespace Zombie_Slayer
         public Random randNum = new Random();
         private Player playerInstance;
 
-        public Zombie(Player player, Size clientSize)
+        public Zombie(Player player, Size clientSize) : this(player, clientSize, Point.Empty)
+        {
+        }
+
+        public Zombie(Player player, Size clientSize, Point initialPosition)
         {
             playerInstance = player;
             speed = Constants.ZombieSpeed;
             Tag = "zombie";
             Size = new Size(Constants.ZombieSizeWidth, Constants.ZombieSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
-            initZombie();
-
-            BackColor = Color.Transparent;
-
+            InitZombie(clientSize, initialPosition);
         }
-        public void initZombie(Size clientSize)
+
+        private void InitZombie(Size clientSize, Point initialPosition)
         {
-            Left = randNum.Next(0, clientSize.Width - Width);
-            Top = randNum.Next(0, clientSize.Height - Height);
+            if (initialPosition == Point.Empty)
+            {
+                Left = randNum.Next(0, clientSize.Width - Width);
+                Top = randNum.Next(0, clientSize.Height - Height);
+            }
+            else
+            {
+                Left = initialPosition.X;
+                Top = initialPosition.Y;
+            }
             Image = Properties.Resources.zombieGDown;
             health = Constants.ZombieInitialHealth;
-            //speed = Constants.ZombieSpeed;
+            BackColor = Color.Transparent;
         }
-
 
         public override void move(Size ClientSize)
         {
@@ -59,6 +69,5 @@ namespace Zombie_Slayer
                 }
             }
         }
-
     }
 }
