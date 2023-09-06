@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33927.289
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewZombieS", "NewZombieS\NewZombieS.csproj", "{2632598E-0E1C-412A-AB87-094594AF852F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zombie Slayer", "NewZombieS\Zombie Slayer.csproj", "{2632598E-0E1C-412A-AB87-094594AF852F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

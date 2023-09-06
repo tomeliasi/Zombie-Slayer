@@ -7,7 +7,7 @@
     <ProjectGuid>{2632598E-0E1C-412A-AB87-094594AF852F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Zombie_Slayer</RootNamespace>
-    <AssemblyName>NewZombieS</AssemblyName>
+    <AssemblyName>Zombie Slayer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

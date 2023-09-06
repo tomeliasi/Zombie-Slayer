@@ -1,0 +1,13 @@
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Sounds\GameOverSound.wav
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Sounds\MainSound.wav
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Zombie Slayer.exe.config
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Zombie Slayer.exe
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Zombie Slayer.pdb
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie Slayer.csproj.AssemblyReference.cache
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie Slayer.csproj.SuggestedBindingRedirects.cache
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie_Slayer.Form1.resources
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie_Slayer.Properties.Resources.resources
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie Slayer.csproj.GenerateResource.cache
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie Slayer.csproj.CoreCompileInputs.cache
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie Slayer.exe
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie Slayer.pdb

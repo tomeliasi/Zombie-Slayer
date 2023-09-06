@@ -15,15 +15,10 @@ C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעש
 C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.csproj.CoreCompileInputs.cache
 C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.exe
 C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.pdb
-C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\NewZombieS.exe.config
-C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\NewZombieS.exe
-C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\NewZombieS.pdb
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.csproj.AssemblyReference.cache
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.csproj.SuggestedBindingRedirects.cache
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.csproj.GenerateResource.cache
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.csproj.CoreCompileInputs.cache
-C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.exe
-C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.pdb
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie_Slayer.Form1.resources
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie_Slayer.Properties.Resources.resources
 C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\obj\Debug\Zombie_Slayer.Form1.resources
@@ -33,3 +28,8 @@ C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעש
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Sounds\GameOverSound.wav
 C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Sounds\MainSound.wav
 C:\Users\tomel\OneDrive\שולחן העבודה\לא יודע כבר מה לעשות\Zombie-Slayer\NewZombieS\obj\Debug\NewZombieS.csproj.AssemblyReference.cache
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Zombie Slayer.exe.config
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Zombie Slayer.exe
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\bin\Debug\Zombie Slayer.pdb
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie Slayer.exe
+C:\Users\Dor\Desktop\Zombie-Slayer\NewZombieS\obj\Debug\Zombie Slayer.pdb
