@@ -161,6 +161,7 @@ namespace Zombie_Slayer
                     formatter.Serialize(fs, gameState);
                 }
                 MessageBox.Show("Game saved successfully.", "Save Game", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
             }
             catch (Exception ex)
             {

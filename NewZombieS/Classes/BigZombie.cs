@@ -16,7 +16,14 @@ namespace Zombie_Slayer
             Tag = "bigZombie";
             Size = new Size(Constants.BigZombieSizeWidth, Constants.BigZombieSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
+            speed = Constants.BigZombieSpeed;
+            demmage = Constants.BigZombieDammage;
 
+            initZombie(initialPosition);
+        }
+
+        public override void initZombie(Point initialPosition)
+        {
             if (initialPosition == Point.Empty)
             {
                 Left = randNum.Next(0, clientSize.Width - Width);
@@ -27,11 +34,8 @@ namespace Zombie_Slayer
                 Left = initialPosition.X;
                 Top = initialPosition.Y;
             }
-
             Image = Properties.Resources.bigZombieDown;
             health = Constants.BigZombieHealth;
-            speed = Constants.BigZombieSpeed;
-            demmage = Constants.BigZombieDammage;
             BackColor = Color.Transparent;
         }
 
@@ -65,7 +69,7 @@ namespace Zombie_Slayer
             }
         }
 
-        public void getDamaged(int damage)
+        public override void getDamaged(int damage)
         {
             health -= damage;
             speed += 2;

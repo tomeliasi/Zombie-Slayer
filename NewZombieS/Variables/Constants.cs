@@ -27,6 +27,8 @@ namespace Zombie_Slayer
         public const int PlayerSpeed = 20;
 
 
+        public const int PlayerShootDamage = 1;
+
 
 
         ///////////////////////////Zombie///////////////////////////

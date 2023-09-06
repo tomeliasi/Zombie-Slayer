@@ -11,15 +11,8 @@ namespace Zombie_Slayer
         protected int demmage;
 
 
-        public void initZombie()
-        {
-            Left = randNum.Next(0, 600);
-            Top = randNum.Next(0, 600);
-            up = false;
-            down = false;
-            left = false;
-            right = false;
-            facing = "down";
-        }
+        public abstract void initZombie(Point initialPosition);
+        public abstract void getDamaged(int damage);
+
     }
 }

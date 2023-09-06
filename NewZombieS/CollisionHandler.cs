@@ -115,10 +115,16 @@ namespace Zombie_Slayer
             player.setScore(1);
             form.Controls.Remove(bulletEntity);
             bulletEntity.Dispose();
-            form.Controls.Remove(zombieEntity);
-            zombieEntity.Dispose();
-            zombiesList.Remove(zombieEntity);
-            Utilities.MakeZombie();
+
+            zombieEntity.getDamaged(Constants.PlayerShootDamage);
+
+            if (zombieEntity.getHealth() <= 0)
+            {
+                form.Controls.Remove(zombieEntity);
+                zombieEntity.Dispose();
+                zombiesList.Remove(zombieEntity);
+                Utilities.MakeZombie();
+            }
         }
 
         private void HandleBigZombieBulletCollision(BigZombie bigZombieEntity, PictureBox bulletEntity)
@@ -126,7 +132,7 @@ namespace Zombie_Slayer
             form.Controls.Remove(bulletEntity);
             bulletEntity.Dispose();
 
-            bigZombieEntity.getDamaged(1);
+            bigZombieEntity.getDamaged(Constants.PlayerShootDamage);
 
             if (bigZombieEntity.Width < 100)
             {

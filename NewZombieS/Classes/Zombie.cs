@@ -14,10 +14,12 @@ namespace Zombie_Slayer
             Tag = "zombie";
             Size = new Size(Constants.ZombieSizeWidth, Constants.ZombieSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
-            InitZombie(initialPosition);
+
+            initZombie(initialPosition);
         }
 
-        private void InitZombie(Point initialPosition)
+        public int getHealth() { return health; }
+        public override void initZombie(Point initialPosition)
         {
             if (initialPosition == Point.Empty)
             {
@@ -63,5 +65,11 @@ namespace Zombie_Slayer
                 }
             }
         }
+
+        public override void getDamaged(int damage)
+        {
+            health -= damage;
+        }
+
     }
 }
