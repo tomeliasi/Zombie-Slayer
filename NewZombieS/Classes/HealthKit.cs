@@ -16,7 +16,7 @@ namespace Zombie_Slayer
             Tag = "healthkit";
             Image = Properties.Resources.first_aid_kit;
             Left = randNum.Next(0, Globals.clientSize.Width - Width);
-            Top = randNum.Next(0, Globals.clientSize.Height - Height);
+            Top = randNum.Next(50, Globals.clientSize.Height - Height);
             Size = new Size(Constants.HealthKitSizeWidth, Constants.HealthKitSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
             Globals.form.Controls.Add(this);

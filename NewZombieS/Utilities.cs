@@ -15,27 +15,27 @@ namespace Zombie_Slayer
             int screenHeight = Globals.clientSize.Height;
 
             Random randNum = new Random();
-            int spawnArea = randNum.Next(1, 5);
+            int spawnEdge = randNum.Next(1, 5);
 
             int x = 0, y = 0;
 
-            switch (spawnArea)
+            switch (spawnEdge)
             {
-                case 1: // Top-left corner
-                    x = randNum.Next(0, screenWidth / 2);
-                    y = randNum.Next(0, screenHeight / 2);
+                case 1: // Top edge
+                    x = randNum.Next(0, screenWidth);
+                    y = 0;
                     break;
-                case 2: // Top-right corner
-                    x = randNum.Next(screenWidth / 2, screenWidth);
-                    y = randNum.Next(0, screenHeight / 2);
+                case 2: // Right edge
+                    x = screenWidth;
+                    y = randNum.Next(0, screenHeight);
                     break;
-                case 3: // Bottom-left corner
-                    x = randNum.Next(0, screenWidth / 2);
-                    y = randNum.Next(screenHeight / 2, screenHeight);
+                case 3: // Bottom edge
+                    x = randNum.Next(0, screenWidth);
+                    y = screenHeight;
                     break;
-                case 4: // Bottom-right corner
-                    x = randNum.Next(screenWidth / 2, screenWidth);
-                    y = randNum.Next(screenHeight / 2, screenHeight);
+                case 4: // Left edge
+                    x = 0;
+                    y = randNum.Next(0, screenHeight);
                     break;
             }
 
@@ -48,6 +48,7 @@ namespace Zombie_Slayer
             int randomIndex = randNum.Next(0, Globals.zombiesList.Count);
             Globals.addElementToForm.Invoke(Globals.zombiesList[randomIndex]);
         }
+
 
         public static void removeObjectByTag(string tag)
         {

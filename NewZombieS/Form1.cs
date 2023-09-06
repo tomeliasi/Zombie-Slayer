@@ -124,7 +124,7 @@ namespace Zombie_Slayer
         private void handleGameOver()
         {
             Globals.player.Image = Properties.Resources.skull;
-            Globals.player.Size = new Size(99, 100);
+            Globals.player.Size = new Size(100, 100);
             GameTimer.Stop();
             MainSound.Dispose();
             gameOverScreen = new GameOver(restartGame);

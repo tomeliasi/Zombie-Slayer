@@ -14,7 +14,7 @@ namespace Zombie_Slayer
             Tag = "ammo";
             Image = Properties.Resources.ammunition;
             Left = randNum.Next(0, Globals.clientSize.Width - Width);
-            Top = randNum.Next(0, Globals.clientSize.Height - Height);
+            Top = randNum.Next(50, Globals.clientSize.Height - Height);
             Size = new Size(Constants.AmmoSizeWidth, Constants.AmmoSizeHeight);
             SizeMode = PictureBoxSizeMode.StretchImage;
             Globals.form.Controls.Add(this);
