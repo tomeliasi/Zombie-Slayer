@@ -200,6 +200,7 @@
     <None Include="Resources\bigZombieRight.png" />
     <None Include="Resources\bigZombieUp.png" />
     <None Include="Resources\background1.jpg" />
+    <Content Include="Sounds\collectHealth.wav" />
     <Content Include="Sounds\GameOverSound.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

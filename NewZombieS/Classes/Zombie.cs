@@ -6,8 +6,6 @@ namespace Zombie_Slayer
 {
     public class Zombie : ZombieAbstract
     {
-        public Random randNum = new Random();
-
         public Zombie(Point initialPosition)
         {
             speed = Constants.ZombieSpeed;
@@ -17,7 +15,6 @@ namespace Zombie_Slayer
 
             initZombie(initialPosition);
         }
-
         public int getHealth() { return health; }
         public override void initZombie(Point initialPosition)
         {

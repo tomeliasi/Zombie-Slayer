@@ -14,6 +14,7 @@ namespace Zombie_Slayer
         private bool gameOver;
         private SoundPlayer gameOverSound;
         private SoundPlayer MainSound;
+
         private bool isPause = false;
         private GameOver gameOverScreen;
 
@@ -44,6 +45,7 @@ namespace Zombie_Slayer
 
             gameOverSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "GameOverSound.wav"));
             MainSound = new SoundPlayer(Path.Combine(Application.StartupPath, "Sounds", "MainSound.wav"));
+
             collisionHandler = new CollisionHandler(Globals.player, this, Globals.zombiesList, Globals.bigZombiesList);
 
             restartGame();
@@ -113,6 +115,12 @@ namespace Zombie_Slayer
             MainSound.Play();
             Globals.player.setIsAmmoVisible(false);
             Globals.player.setIsHealthkitVisable(false);
+
+            Globals.healthKit = null;
+            Globals.healthKit = new HealthKit();
+
+            Globals.ammo = null;
+            Globals.ammo = new Ammo();
         }
 
         private void handleGameOver()
