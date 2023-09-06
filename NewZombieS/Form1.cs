@@ -36,7 +36,6 @@ namespace Zombie_Slayer
             Globals.zombiesList = new List<ZombieAbstract>();
             Globals.bigZombiesList = new List<BigZombie>();
 
-            Globals.player = new Player();
             Globals.ammo = new Ammo();
             Globals.healthKit = new HealthKit();
 
@@ -48,11 +47,6 @@ namespace Zombie_Slayer
             collisionHandler = new CollisionHandler(Globals.player, this, Globals.zombiesList, Globals.bigZombiesList);
 
             restartGame();
-        }
-
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-            e.Graphics.DrawImage(Globals.player.Image, Globals.player.Location);
         }
 
         private void mainTimerEvent(object sender, EventArgs e)
